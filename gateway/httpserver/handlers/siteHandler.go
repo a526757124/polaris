@@ -2,20 +2,30 @@
 package handlers
 
 import (
-	"TechPlat/apigateway/config"
-	"TechPlat/apigateway/httpserver/monitor"
+	"github.com/devfeel/polaris/config"
 	"encoding/json"
 	"runtime/pprof"
 	"html/template"
 
 	"github.com/devfeel/dotweb"
-	"TechPlat/apigateway/const"
+	"github.com/devfeel/polaris/const"
 	"github.com/devfeel/polaris/util/httpx"
+	"runtime"
+	"github.com/devfeel/polaris/control/metric"
+	"time"
 )
 
 func Monitor(ctx dotweb.Context) error{
-	bytes, _ := json.Marshal(monitor.Current)
-	ctx.WriteString(string(bytes))
+	type monitorInfo struct{
+		GoroutineNum int
+		TotalRequestCount int64
+		StartTime time.Time
+	}
+	m := &monitorInfo{}
+	m.GoroutineNum = runtime.NumGoroutine()
+	m.StartTime = metric.ServerCounter.StartTime()
+	m.TotalRequestCount = metric.ServerCounter.Count()
+	ctx.WriteString(json.Marshal(m))
 	return nil
 }
 

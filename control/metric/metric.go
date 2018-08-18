@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"sync"
 	"time"
+	"github.com/devfeel/polaris/control/count"
 )
 
 var (
@@ -17,6 +18,7 @@ var (
 	Chan_ApiCount         chan ApiCountInfo
 	TimeTicker_RequestMap *time.Ticker
 	mutex                 *sync.RWMutex
+	ServerCounter         count.Counter
 )
 
 //Api计数信息
@@ -40,6 +42,7 @@ func init() {
 	Chan_ApiCount = make(chan ApiCountInfo, 100000)
 	TimeTicker_RequestMap = time.NewTicker(60 * time.Second)
 	mutex = new(sync.RWMutex)
+	ServerCounter = count.NewCounter()
 }
 
 //启动Api计数日志
@@ -48,8 +51,14 @@ func StartApiCountHandler() {
 	go cronDealRequestMap()
 }
 
+// AddRequestCount add request count
+func AddRequestCount(num int64){
+	ServerCounter.Inc(num)
+}
+
 //添加Api计数信息
 func AddApiCount(appId string, apiId int, apiModule string, apiName string, apiVersion string, count uint, retCode string) {
+	AddRequestCount(1)
 	countInfo := ApiCountInfo{
 		AppID:      appId,
 		ApiID:      strconv.Itoa(apiId),

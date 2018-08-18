@@ -5,24 +5,24 @@ import (
 	"github.com/devfeel/polaris/config"
 	"github.com/devfeel/polaris/const"
 	"github.com/devfeel/polaris/models"
-	"github.com/devfeel/polaris/control/metric"
 	"github.com/devfeel/polaris/control/ratelimit"
-	"github.com/devfeel/polaris/util/httpx"
 	"github.com/devfeel/polaris/util/logx"
-	"github.com/devfeel/polaris/gateway/httpserver/monitor"
 	"github.com/devfeel/polaris/gateway/balance"
 	"github.com/devfeel/polaris/gateway/auth"
 
-	"encoding/json"
-	"os"
-	"runtime"
 	"strconv"
 	"strings"
 	"time"
 	"github.com/devfeel/dotweb"
 	"net/http"
+	"os"
 	"fmt"
-
+	"runtime"
+	"github.com/devfeel/polaris/util/httpx"
+	"sync"
+	"encoding/json"
+	"github.com/devfeel/polaris/control/metric"
+	"github.com/devfeel/polaris/core/exception"
 )
 
 type ResponseJson struct {
@@ -71,11 +71,8 @@ var(
 	gatewayLogger = logger.GatewayLogger
 )
 
-/*解析api请求目录
-* Author: Panxinming
-* LastUpdateTime: 2016-05-23 18:00
-* 解析成功则返回ApiModule、ApiKey、ApiVersion、ApiUrlKey
- */
+// resolveApiPath解析api请求目录
+// 解析成功则返回ApiModule、ApiKey、ApiVersion、ApiUrlKey
 func resolveApiPath(ctx dotweb.Context) (apiModule, apiKey, apiVersion, apiUrlKey string) {
 	apiModule = ctx.GetRouterName("module")
 	apiKey = ctx.GetRouterName("apikey")
@@ -84,7 +81,7 @@ func resolveApiPath(ctx dotweb.Context) (apiModule, apiKey, apiVersion, apiUrlKe
 	return apiModule, apiKey, apiVersion, apiUrlKey
 }
 
-//根据api地址与查询参数，组合实际访问地址
+// combineApiUrl根据api地址与查询参数，组合实际访问地址
 func combineApiUrl(targetApiUrl, queryString string) string{
 	//处理参数拼接，考虑是否匹配?和&符号的情况
 	if strings.Contains(targetApiUrl, "?") {
@@ -100,8 +97,8 @@ func combineApiUrl(targetApiUrl, queryString string) string{
 	return targetApiUrl
 }
 
-//签名判断，检查传入加密串是否与服务器端一致
-func checkSign(ctx dotweb.Context, md5Key string, appEncrypt string) (appVal, gateVal string, isOk bool) {
+// validateMD5Sign validate md5 sign
+func validateMD5Sign(ctx dotweb.Context, md5Key string, appEncrypt string) (retCode int, retMsg string) {
 	queryArgs := ctx.Request().QueryStrings()
 	queryArgs.Del(HttpParam_GateEncrypt)
 	postBody := ""
@@ -111,12 +108,73 @@ func checkSign(ctx dotweb.Context, md5Key string, appEncrypt string) (appVal, ga
 			postBody = string(ctx.Request().PostBody())
 		}
 	}
-	return auth.CheckSign(queryArgs, postBody, md5Key, appEncrypt)
+	appVal, gateVal, isOk := auth.ValidateMD5Sign(queryArgs, postBody, md5Key, appEncrypt)
+	if isOk{
+		retMsg = ""
+		retCode = _const.RetCode_OK
+	}else{
+		retMsg = "CheckEncrypt failed! -> " + appVal + " == " + gateVal
+		retCode = -100009
+	}
+	return
+}
+
+// getGateParam get Gate param(GateAppID, GateEncrypt)
+// first get from head, if not exists, get from query string
+func getGateParam(ctx dotweb.Context) (appid, encrypt string){
+	gateEncrypt := ctx.Request().QueryHeader(HttpParam_GateEncrypt)
+	gateAppID := ctx.Request().QueryHeader(HttpParam_GateAppID)
+	if gateAppID == ""{
+		gateAppID = ctx.QueryString(HttpParam_GateAppID)
+	}
+	if gateEncrypt == ""{
+		gateEncrypt = ctx.QueryString(HttpParam_GateEncrypt)
+	}
+	return gateAppID, gateEncrypt
+}
+
+// cleanQueryData cleaning query data
+func cleanQueryData(ctx dotweb.Context) string{
+	queryArgs := ctx.Request().QueryStrings()
+	queryArgs.Del(HttpParam_GateEncrypt)
+	queryArgs.Del(HttpParam_GateAppID)
+	query := queryArgs.Encode()
+	return query
+}
+
+// doBalanceTargetApi do balance real target apiurl
+// if not exists alive target, return error info
+func doBalanceTargetApi(apiContext *ApiContext) (retCode int, retMsg string, realApiUrl string){
+	retCode = _const.RetCode_OK
+
+	if apiContext.ApiInfo.ApiType != _const.ApiType_Balance {
+		retCode = -100010
+		retMsg = "get targetapi failed, not balance mode!"
+		return
+	}
+	//获取本次请求处理的目标Api，加入负载机制
+	if apiContext.ApiInfo.TargetApi != nil && len(apiContext.ApiInfo.TargetApi) >0 {
+		targetApi := balance.GetAliveApi(apiContext.ApiInfo)
+		if targetApi == "" {
+			retCode = -100010
+			retMsg = "get targetapi failed, load targetapi nil!"
+			return
+		} else{
+			//组合API地址与参数
+			realApiUrl = targetApi
+		}
+	}else{
+		if apiContext.ApiInfo.ApiUrl != "" {
+			realApiUrl = apiContext.ApiInfo.ApiUrl
+		}else{
+			retCode = -100010
+			retMsg = "get targetapi failed, no config apiurl!"
+		}
+	}
+	return
 }
 
 /* 基础检查
-* Author: Panxinming
-* LastUpdateTime: 2016-08-30 18:00
 * 检查AppID是否合法
 * 检查ApiKey是否合法
 * 检查AppID与ApiKey是否有权限
@@ -148,16 +206,11 @@ func baseCheck(ctx dotweb.Context) (apiContext *ApiContext) {
 	apiContext.ApiName = apiKey
 	apiContext.ApiVersion = apiVersion
 
-	//解析url参数
-	queryArgs := ctx.Request().QueryStrings()
-	gateEncrypt := ctx.QueryString(HttpParam_GateEncrypt)
-	gateAppID := ctx.QueryString(HttpParam_GateAppID)
-	queryArgs.Del(HttpParam_GateEncrypt)
-	queryArgs.Del(HttpParam_GateAppID)
-	query := queryArgs.Encode()
+	//get appid, encrypt
+	gateAppID, gateEncrypt := getGateParam(ctx)
 
-	//query string
-	apiContext.Query = query
+	//query data cleaning
+	apiContext.Query = cleanQueryData(ctx)
 
 	if gateAppID == "" {
 		apiContext.RetMsg = "unable to resolve query:lost gate_appid"
@@ -166,6 +219,7 @@ func baseCheck(ctx dotweb.Context) (apiContext *ApiContext) {
 	}
 
 	apiContext.GateAppID = gateAppID
+
 	//获取对应AppInfo
 	apiContext.AppInfo, flag = config.GetAppInfo(gateAppID)
 	if !flag {
@@ -228,37 +282,13 @@ func baseCheck(ctx dotweb.Context) (apiContext *ApiContext) {
 
 	//鉴权处理
 	if apiContext.ApiInfo.ValidateType == _const.ValidateType_MD5 {
-		if appVal, gateVal, isOK := checkSign(ctx, apiContext.AppInfo.AppKey, gateEncrypt); !isOK {
-			apiContext.RetMsg = "CheckEncrypt failed! -> " + appVal + " == " + gateVal
-			apiContext.RetCode = -100009
+		if retCode, retMsg := validateMD5Sign(ctx, apiContext.AppInfo.AppKey, gateEncrypt); retCode != _const.RetCode_OK {
+			apiContext.RetMsg = retMsg
+			apiContext.RetCode = retCode
 			return
 		}
 	}
 
-	//负载方式检查TargetApi
-	if apiContext.ApiInfo.ApiType == _const.ApiType_Balance {
-		//获取本次请求处理的目标Api，加入负载机制
-		if apiContext.ApiInfo.TargetApi != nil && len(apiContext.ApiInfo.TargetApi) >0 {
-			targetApi := balance.GetTargetApi(apiContext.ApiInfo)
-			if targetApi == nil {
-				apiContext.RetMsg = "get targetapi failed, load targetapi nil!"
-				apiContext.RetCode = -100010
-				return
-			} else{
-				//组合API地址与参数
-				apiContext.TargetApiUrl = combineApiUrl(targetApi.TargetUrl, query)
-			}
-		}else{
-			if apiContext.ApiInfo.ApiUrl != "" {
-				apiContext.TargetApiUrl = combineApiUrl(apiContext.ApiInfo.ApiUrl, query)
-			}else{
-				apiContext.RetMsg = "get targetapi failed, no config apiurl!"
-				apiContext.RetCode = -100010
-				return
-			}
-		}
-
-	}
 	//组合方式基础检查
 	if apiContext.ApiInfo.ApiType == _const.ApiType_Group {
 		if apiContext.ApiInfo.TargetApi == nil || len(apiContext.ApiInfo.TargetApi) <=0 {
@@ -270,28 +300,18 @@ func baseCheck(ctx dotweb.Context) (apiContext *ApiContext) {
 	return
 }
 
-/* Get模式代理
-* Author: Panxinming
-* LastUpdateTime: 2016-08-30 18:00
-* Get方式请求目标Api地址，参数透传
-* 如果合法，输出状态码及目标Api返回结果
-* RetCode,RetMsg,TargetApiUrl,HttpMethod,IntervalTime,ContentType,Message
-* 增加负载支持 - add by pxm 20160830
- */
+// ProxyGet route all Get requests to real target server
+// returns: ResponseJson: RetCode,RetMsg,LastLoadApisTime,IntervalTime,ContentType,Message
 func ProxyGet(ctx dotweb.Context) error{
 
 	defer func() {
 		if err := recover(); err != nil {
-			os.Stdout.Write([]byte("httpHandler::ProxyGet error! -> " + fmt.Sprint(err)))
-			gatewayLogger.Error(fmt.Sprint(err))
-			buf := make([]byte, 4096)
-			n := runtime.Stack(buf, true)
-			gatewayLogger.Error(string(buf[:n]))
-			os.Stdout.Write(buf[:n])
+			ex := exception.CatchError(_const.ProjectName+":ProxyGet", err)
+			gatewayLogger.Error(ex.GetDefaultLogString())
+			os.Stdout.Write([]byte(ex.GetDefaultLogString()))
 		}
 	}()
 
-	monitor.Current.AddRequestCount(1)
 	var resJson ResponseJson
 	resJson.RetCode = 0
 	resJson.RetMsg = "ok"
@@ -305,41 +325,49 @@ func ProxyGet(ctx dotweb.Context) error{
 
 	if resJson.RetCode == 0 {
 		if apiContext.ApiInfo.ApiType == _const.ApiType_Balance {
-			body, contentType, intervalTime, err := httpx.HttpGet(apiContext.TargetApiUrl)
-			if err != nil {
-				resJson.RetCode = _const.RetCode_Error
-				resJson.RetMsg = body
-				resJson.Message = err.Error()
-
-			} else {
-				resJson.RetCode = _const.RetCode_OK
-				resJson.RetMsg = "ok"
-				resJson.Message = body
+			resJson.RetCode, resJson.RetMsg, apiContext.TargetApiUrl = doBalanceTargetApi(apiContext)
+			if resJson.RetCode ==0{
+				realApiUrl := combineApiUrl(apiContext.TargetApiUrl, apiContext.Query)
+				body, contentType, intervalTime, err := httpx.HttpGet(realApiUrl)
+				if err != nil {
+					resJson.RetCode = _const.RetCode_Error
+					resJson.RetMsg = body
+					resJson.Message = err.Error()
+					balance.SetError(apiContext.ApiInfo, apiContext.TargetApiUrl)
+				} else {
+					resJson.RetCode = _const.RetCode_OK
+					resJson.RetMsg = "ok"
+					resJson.Message = body
+				}
+				resJson.IntervalTime = intervalTime
+				resJson.ContentType = contentType
 			}
-
-			resJson.IntervalTime = intervalTime
-			resJson.ContentType = contentType
 		}
 		if apiContext.ApiInfo.ApiType == _const.ApiType_Group{
+			var syncWait sync.WaitGroup
 			var targetResults []*models.TargetApiResult
 			for _, v:=range apiContext.ApiInfo.TargetApi{
-				result := new(models.TargetApiResult)
-				result.ApiKey = v.TargetKey
-
-				body, _, intervalTime, err := httpx.HttpGet(combineApiUrl(v.TargetUrl, apiContext.Query))
-				if err != nil{
-					result.RetCode =_const.RetCode_Error
-					result.RetMsg = err.Error()
-				}else{
-					errJson := json.Unmarshal([]byte(body), result)
-					if errJson != nil{
-						result.RetCode =_const.RetCode_JsonUnmarshalError
-						result.RetMsg = errJson.Error()
+				syncWait.Add(1)
+				go func(){
+					defer syncWait.Done()
+					result := new(models.TargetApiResult)
+					result.ApiKey = v.TargetKey
+					body, _, intervalTime, err := httpx.HttpGet(combineApiUrl(v.TargetUrl, apiContext.Query))
+					if err != nil{
+						result.RetCode =_const.RetCode_Error
+						result.RetMsg = err.Error()
+					}else{
+						errJson := json.Unmarshal([]byte(body), result)
+						if errJson != nil{
+							result.RetCode =_const.RetCode_JsonUnmarshalError
+							result.RetMsg = errJson.Error()
+						}
 					}
-				}
-				result.IntervalTime = intervalTime
-				targetResults = append(targetResults, result)
+					result.IntervalTime = intervalTime
+					targetResults = append(targetResults, result)
+				}()
 			}
+			syncWait.Wait()
 			resJson.RetCode = _const.RetCode_OK
 			resJson.RetMsg = "ok"
 			resJson.Message = targetResults
@@ -400,21 +428,17 @@ func ProxyGet(ctx dotweb.Context) error{
 	return nil
 }
 
-//Post代理
+// ProxyGet route all Post requests to real target server
+// returns: ResponseJson: RetCode,RetMsg,LastLoadApisTime,IntervalTime,ContentType,Message
 func ProxyPost(ctx dotweb.Context) error{
-
 	defer func() {
 		if err := recover(); err != nil {
-			os.Stdout.Write([]byte("httpHandler::ProxyPost error! -> " + fmt.Sprint(err)))
-			gatewayLogger.Error(fmt.Sprint(err))
-			buf := make([]byte, 4096)
-			n := runtime.Stack(buf, true)
-			gatewayLogger.Error(string(buf[:n]))
-			os.Stdout.Write(buf[:n])
+			ex := exception.CatchError(_const.ProjectName+":ProxyGet", err)
+			gatewayLogger.Error(ex.GetDefaultLogString())
+			os.Stdout.Write([]byte(ex.GetDefaultLogString()))
 		}
 	}()
 
-	monitor.Current.AddRequestCount(1)
 	var resJson ResponseJson
 	resJson.RetCode = 0
 	resJson.RetMsg = "ok"
@@ -428,45 +452,51 @@ func ProxyPost(ctx dotweb.Context) error{
 
 	if resJson.RetCode == 0 {
 		postcontent := ctx.Request().PostBody()
-
 		if apiContext.ApiInfo.ApiType == _const.ApiType_Balance {
-
-			body, contentType, intervalTime, err := httpx.HttpPost(apiContext.TargetApiUrl, string(postcontent), sourceContentType)
-
-			if err != nil {
-				resJson.RetCode = -209999
-				resJson.RetMsg = body
-				resJson.Message = err.Error()
-
-			} else {
-				resJson.RetCode = 0
-				resJson.RetMsg = "ok"
-				resJson.Message = body
+			resJson.RetCode, resJson.RetMsg, apiContext.TargetApiUrl = doBalanceTargetApi(apiContext)
+			if resJson.RetCode ==0 {
+				realApiUrl := combineApiUrl(apiContext.TargetApiUrl, apiContext.Query)
+				body, contentType, intervalTime, err := httpx.HttpPost(realApiUrl, string(postcontent), sourceContentType)
+				if err != nil {
+					resJson.RetCode = -209999
+					resJson.RetMsg = body
+					resJson.Message = err.Error()
+					balance.SetError(apiContext.ApiInfo, apiContext.TargetApiUrl)
+				} else {
+					resJson.RetCode = 0
+					resJson.RetMsg = "ok"
+					resJson.Message = body
+				}
+				resJson.IntervalTime = intervalTime
+				resJson.ContentType = contentType
 			}
-
-			resJson.IntervalTime = intervalTime
-			resJson.ContentType = contentType
 		}
 		if apiContext.ApiInfo.ApiType == _const.ApiType_Group{
+			var syncWait sync.WaitGroup
 			var targetResults []*models.TargetApiResult
 			for _, v:=range apiContext.ApiInfo.TargetApi{
-				result := new(models.TargetApiResult)
-				result.ApiKey = v.TargetKey
-
-				body, _, intervalTime, err := httpx.HttpPost(combineApiUrl(v.TargetUrl, apiContext.Query), string(postcontent), sourceContentType)
-				if err != nil{
-					result.RetCode =_const.RetCode_Error
-					result.RetMsg = err.Error()
-				}else{
-					errJson := json.Unmarshal([]byte(body), result)
-					if errJson != nil{
-						result.RetCode =_const.RetCode_JsonUnmarshalError
-						result.RetMsg = errJson.Error()
+				syncWait.Add(1)
+				go func() {
+					defer syncWait.Done()
+					result := new(models.TargetApiResult)
+					result.ApiKey = v.TargetKey
+					realApiUrl := combineApiUrl(v.TargetUrl, apiContext.Query)
+					body, _, intervalTime, err := httpx.HttpPost(realApiUrl, string(postcontent), sourceContentType)
+					if err != nil {
+						result.RetCode = _const.RetCode_Error
+						result.RetMsg = err.Error()
+					} else {
+						errJson := json.Unmarshal([]byte(body), result)
+						if errJson != nil {
+							result.RetCode = _const.RetCode_JsonUnmarshalError
+							result.RetMsg = errJson.Error()
+						}
 					}
-				}
-				result.IntervalTime = intervalTime
-				targetResults = append(targetResults, result)
+					result.IntervalTime = intervalTime
+					targetResults = append(targetResults, result)
+				}()
 			}
+			syncWait.Wait()
 			resJson.RetCode = _const.RetCode_OK
 			resJson.RetMsg = "ok"
 			resJson.Message = targetResults
@@ -539,7 +569,8 @@ func ProxyLocal(ctx dotweb.Context) error{
 		}
 	}()
 
-	monitor.Current.AddRequestCount(1)
+	metric.AddRequestCount(1)
+
 	var resJson ResponseJson
 	resJson.RetCode = 0
 	resJson.RetMsg = "ok"

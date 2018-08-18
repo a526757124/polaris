@@ -232,6 +232,21 @@ func initApiMap() {
 		apiMap = tmpMap
 	}
 
+	//create alive urls for balance
+	for _, v:=range apiMap{
+		if v.ApiType == _const.ApiType_Balance {
+			v.AliveApiUrls = []string{}
+			if v.TargetApi == nil || len(v.TargetApi) <= 0 {
+				//兼容老的Url字段
+				v.AliveApiUrls = append(v.AliveApiUrls, v.ApiUrl)
+			}else{
+				for _, api := range v.TargetApi {
+					v.AliveApiUrls = append(v.AliveApiUrls, api.TargetUrl)
+				}
+			}
+		}
+	}
+
 	innerLogger.Debug("ProxyConfig::initApiMap end => " + strconv.Itoa(len(apiMap)) + " records")
 
 }
@@ -287,11 +302,11 @@ func resetAppApiInfo() {
 		}
 	}()
 
-	//初始化App信息
+	//init app list from config
 	initAppMap()
-	//初始化Api信息
+	//init api list from config
 	initApiMap()
-	//初始化AppApiRelation信息
+	//init the relations in app and api
 	initAppApiRelationMap()
 
 	LastLoadApisTime = time.Now()

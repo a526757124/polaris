@@ -93,6 +93,29 @@ func HttpPost(url string, postbody string, bodyType string) (body string, conten
 
 }
 
+func HttpHead(url string)(body string, intervalTime int64, errReturn error){
+	startTime := time.Now()
+	intervalTime = 0
+	errReturn = nil
+	resp, err := currClient.Head(url)
+	if err != nil {
+		intervalTime = int64(time.Now().Sub(startTime) / time.Millisecond)
+		errReturn = err
+		return
+	}
+	defer resp.Body.Close()
+
+	bytebody, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		intervalTime = int64(time.Now().Sub(startTime) / time.Millisecond)
+		errReturn = err
+		return
+	}
+	body = string(bytebody)
+	intervalTime = int64(time.Now().Sub(startTime) / time.Millisecond)
+	return
+}
+
 //从指定query集合获取指定key的值
 func GetQuery(querys url.Values, key string) string {
 	if len(querys[key]) > 0 {

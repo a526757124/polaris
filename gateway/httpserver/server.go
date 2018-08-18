@@ -4,12 +4,12 @@ package httpserver
 import (
 	"github.com/devfeel/polaris/config"
 	"github.com/devfeel/polaris/util/logx"
-	"TechPlat/apigateway/httpserver/route"
 
 	"fmt"
 	"strconv"
 
 	"github.com/devfeel/dotweb"
+	"github.com/devfeel/polaris/gateway/httpserver/handlers"
 )
 
 func StartServer(logPath string) error {
@@ -17,7 +17,7 @@ func StartServer(logPath string) error {
 	dotweb := dotweb.Classic(logPath)
 
 	//初始化Router
-	httproute.InitRoute(dotweb)
+	InitRoute(dotweb)
 
 	httpPort := config.CurrentConfig.HttpServer.HttpPort
 
@@ -28,4 +28,15 @@ func StartServer(logPath string) error {
 		fmt.Println("HttpServer[" + strconv.Itoa(httpPort) + "]启动失败:" + err.Error())
 	}
 	return err
+}
+
+func InitRoute(dotweb *dotweb.DotWeb) {
+	dotweb.HttpServer.Router().GET("/api/:module/:version/:apikey", handlers.ProxyGet)
+	dotweb.HttpServer.Router().POST("/api/:module/:version/:apikey", handlers.ProxyPost)
+	dotweb.HttpServer.Router().GET("/local/:module/:version/:apikey", handlers.ProxyLocal)
+	dotweb.HttpServer.Router().GET("/", handlers.Index)
+	dotweb.HttpServer.Router().GET("/monitor", handlers.Monitor)
+	dotweb.HttpServer.Router().GET("/pprof/:module", handlers.Watch)
+	dotweb.HttpServer.Router().GET("/info/:infotype", handlers.Info)
+	dotweb.HttpServer.Router().GET("/version", handlers.Version)
 }

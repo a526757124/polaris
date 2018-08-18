@@ -28,6 +28,7 @@ const (
 	DefaultTimeLayout     = "2006-01-02 15:04:05"
 
 	RetCode_Error = -9999
+	RetCode_Hystrix = -9998
 	RetCode_JsonUnmarshalError = -9001
 	RetCode_JsonMarshalError = -9002
 	RetCode_OK = 0

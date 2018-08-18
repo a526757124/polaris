@@ -7,8 +7,8 @@ import (
 	"net/url"
 )
 
-// CheckSign check md5 sign with query args and post body
-func CheckSign(queryArgs url.Values, postBody string, md5Key string, appEncrypt string) (appVal, gateVal string, isOk bool){
+// ValidateMD5Sign check md5 sign with query args and post body
+func ValidateMD5Sign(queryArgs url.Values, postBody string, md5Key string, appEncrypt string) (appVal, gateVal string, isOk bool){
 	querys := strings.Split(queryArgs.Encode(), "&")
 	sort.Strings(querys)
 	querySource := strings.Join(querys, "")
