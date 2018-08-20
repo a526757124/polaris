@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"github.com/devfeel/polaris/config"
 	"github.com/devfeel/polaris/const"
+	"github.com/devfeel/polaris/models"
 )
 
 // DoValidate validate the ApiContext
@@ -22,6 +23,7 @@ func DoValidate(apiContext *ApiContext) {
 	if !flag {
 		apiContext.RetMsg = "not support app"
 		apiContext.RetCode = RetCode_Validate_NotSupportApp
+		apiContext.AppInfo = &models.AppInfo{}
 	}
 
 	//判断App状态是否合法
@@ -38,6 +40,7 @@ func DoValidate(apiContext *ApiContext) {
 		if !flag {
 			apiContext.RetMsg = "not support api"
 			apiContext.RetCode = RetCode_Validate_NotSupportAPI
+			apiContext.ApiInfo = &models.GatewayApiInfo{}
 		}
 	}
 

@@ -20,11 +20,13 @@ const(
 	LogTarget_InnerLog = "InnerLog"
 	LogTarget_LoadBalance = "LoadBalance"
 	LogTarget_Gateway = "Gateway"
+	LogTarget_JsonRpc = "JsonRpc"
 	LogTarget_Default  = "Default"
 )
 
 var (
 	GatewayLogger Logger
+	JsonRpcLogger Logger
 	InnerLogger Logger
 	LoadBalanceLogger Logger
 	DefaultLogger Logger
@@ -59,6 +61,7 @@ func init(){
 	InnerLogger = GetLogger(LogTarget_InnerLog)
 	LoadBalanceLogger = GetLogger(LogTarget_LoadBalance)
 	DefaultLogger = GetLogger(LogTarget_Default)
+	JsonRpcLogger = GetLogger(LogTarget_JsonRpc)
 }
 
 // GetLogger get logger with log target

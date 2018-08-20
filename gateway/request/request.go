@@ -6,8 +6,40 @@ import (
 	"github.com/devfeel/polaris/const"
 	"github.com/devfeel/polaris/util/httpx"
 	. "github.com/devfeel/polaris/gateway/models"
+	. "github.com/devfeel/polaris/gateway/const"
 	"github.com/devfeel/polaris/util/rpcx"
+	"github.com/devfeel/polaris/gateway/balance"
+	"github.com/devfeel/polaris/models"
 )
+
+// doBalanceTargetApi do balance real target apiurl
+// if not exists alive target, return error info
+func DoBalanceTargetApi(apiContext *ApiContext) (retCode int, retMsg string, realTargetApi *models.TargetApiInfo){
+	retCode = RetCode_OK
+
+	if apiContext.ApiInfo.ApiType != _const.ApiType_Balance {
+		retCode = RetCode_Balance_NobalanceMode
+		retMsg = "get targetapi failed, not balance mode!"
+		return
+	}
+	//load targets, do balance
+	if apiContext.ApiInfo.TargetApis != nil && len(apiContext.ApiInfo.TargetApis) >0 {
+		targetApi := balance.GetAliveApi(apiContext.ApiInfo)
+		if targetApi == nil {
+			retCode = RetCode_Balance_LoadNil
+			retMsg = "get targetapi failed, load targetapi nil!"
+			return
+		} else{
+			realTargetApi = targetApi
+		}
+	}else{
+		retCode = RetCode_Balance_LoadNil
+		retMsg = "get targetapi failed, load targetapi nil!"
+		return
+	}
+	return
+}
+
 
 // DoRequestTarget do request match HttpGet\HttpPost\JsonRpc
 func DoRequestTarget(apiCtx *ApiContext)(body, contentType string, intervalTime int64, err error){

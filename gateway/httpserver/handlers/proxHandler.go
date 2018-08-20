@@ -64,33 +64,6 @@ func getApiContextFromItem(ctx dotweb.Context)(*ApiContext){
 	return apiContext
 }
 
-// doBalanceTargetApi do balance real target apiurl
-// if not exists alive target, return error info
-func doBalanceTargetApi(apiContext *ApiContext) (retCode int, retMsg string, realTargetApi *models.TargetApiInfo){
-	retCode = RetCode_OK
-
-	if apiContext.ApiInfo.ApiType != _const.ApiType_Balance {
-		retCode = RetCode_Balance_NobalanceMode
-		retMsg = "get targetapi failed, not balance mode!"
-		return
-	}
-	//load targets, do balance
-	if apiContext.ApiInfo.TargetApis != nil && len(apiContext.ApiInfo.TargetApis) >0 {
-		targetApi := balance.GetAliveApi(apiContext.ApiInfo)
-		if targetApi == nil {
-			retCode = RetCode_Balance_LoadNil
-			retMsg = "get targetapi failed, load targetapi nil!"
-			return
-		} else{
-			realTargetApi = targetApi
-		}
-	}else{
-		retCode = RetCode_Balance_LoadNil
-		retMsg = "get targetapi failed, load targetapi nil!"
-		return
-	}
-	return
-}
 
 // OneProxy route all Get/Post/JsonRpc requests to real target server
 // returns: ResponseJson: RetCode,RetMsg,LastConfigTime,IntervalTime,ContentType,Message
@@ -121,7 +94,7 @@ func OneProxy(ctx dotweb.Context) error{
 	if resJson.RetCode == 0 {
 		apiContext.PostBody = ctx.Request().PostBody()
 		if apiContext.ApiInfo.ApiType == _const.ApiType_Balance {
-			resJson.RetCode, resJson.RetMsg, apiContext.RealTargetApi = doBalanceTargetApi(apiContext)
+			resJson.RetCode, resJson.RetMsg, apiContext.RealTargetApi = request.DoBalanceTargetApi(apiContext)
 			if resJson.RetCode ==0 {
 				body, contentType, intervalTime, err := request.DoRequestTarget(apiContext)
 				if err != nil {
@@ -193,22 +166,13 @@ func OneProxy(ctx dotweb.Context) error{
 	}
 
 	//proxy log set
+	proxyLog.RawResponseFlag = apiContext.ApiInfo.RawResponseFlag
 	convertProxyLog(proxyLog, resJson)
-
-	if apiContext.ApiInfo!= nil{
-		proxyLog.RawResponseFlag = apiContext.ApiInfo.RawResponseFlag
-	}else{
-		proxyLog.RawResponseFlag = false
-	}
 
 	jsonLogB, _ := json.Marshal(proxyLog)
 	gatewayLogger.Info(string(jsonLogB))
 	//do metrics
-	apiId := 0
-	if apiContext.ApiInfo!= nil{
-		apiId = apiContext.ApiInfo.ApiID
-	}
-	metric.AddApiCount(apiContext.GateAppID, apiId, apiContext.ApiModule, apiContext.ApiName, apiContext.ApiVersion, 1, strconv.Itoa(resJson.RetCode))
+	metric.AddApiCount(apiContext.GateAppID, apiContext.ApiInfo.ApiID, apiContext.ApiModule, apiContext.ApiName, apiContext.ApiVersion, 1, strconv.Itoa(resJson.RetCode))
 	ctx.WriteString(responseContent)
 	return nil
 }
