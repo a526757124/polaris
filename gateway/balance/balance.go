@@ -45,6 +45,7 @@ func SetError(apiInfo *models.GatewayApiInfo, apiUrl string){
 		apiHystrix.SetExtendedData(apiInfo)
 		apiHystrix.RegisterOnTriggerAlive(onTriggerAlive)
 		apiHystrix.RegisterOnTriggerHystrix(onTriggerHystrix)
+		apiHystrix.Do()
 	}
 	apiHystrix.GetCounter().Inc(1)
 }
