@@ -32,9 +32,8 @@ func StartServer(logPath string) error {
 }
 
 func InitRoute(dotweb *dotweb.DotWeb) {
-	dotweb.HttpServer.Router().GET("/api/:module/:version/:apikey", handlers.ProxyGet).Use(middlewares.NewValidateMiddleware())
-	dotweb.HttpServer.Router().POST("/api/:module/:version/:apikey", handlers.ProxyPost).Use(middlewares.NewValidateMiddleware())
-	dotweb.HttpServer.Router().GET("/local/:module/:version/:apikey", handlers.ProxyLocal)
+	dotweb.HttpServer.Router().GET("/api/:module/:version/:apikey", handlers.OneProxy).Use(middlewares.NewValidateMiddleware())
+	dotweb.HttpServer.Router().POST("/api/:module/:version/:apikey", handlers.OneProxy).Use(middlewares.NewValidateMiddleware())
 	dotweb.HttpServer.Router().GET("/", handlers.Index)
 	dotweb.HttpServer.Router().GET("/monitor", handlers.Monitor)
 	dotweb.HttpServer.Router().GET("/pprof/:module", handlers.Watch)

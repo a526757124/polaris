@@ -5,7 +5,9 @@ import "github.com/devfeel/polaris/models"
 //Api上下文
 type ApiContext struct {
 	GateAppID    string
-	Query string
+	Query 		string
+	PostBody []byte
+	ContentType string
 	AppInfo      *models.AppInfo
 	ApiInfo      *models.GatewayApiInfo
 	ApiModule    string
@@ -13,5 +15,5 @@ type ApiContext struct {
 	ApiVersion   string
 	RetCode      int
 	RetMsg       string
-	TargetApiUrl string
+	RealTargetApi	 *models.TargetApiInfo
 }

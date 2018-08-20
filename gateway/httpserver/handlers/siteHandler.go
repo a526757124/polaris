@@ -53,7 +53,7 @@ func Index(ctx dotweb.Context) error {
 func Info(ctx dotweb.Context) error{
 	ctx.Response().SetContentType(dotweb.MIMETextHTML)
 
-	ctx.WriteString("LastLoadApisTime : " + config.LastLoadApisTime.Format(_const.DefaultTimeLayout))
+	ctx.WriteString("LastLoadApisTime : " + config.LoadConfigTime.Format(_const.DefaultTimeLayout))
 	ctx.WriteString("<br>")
 	ctx.WriteString("<br>")
 

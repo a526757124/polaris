@@ -36,7 +36,7 @@ var (
 	appMap map[string]*models.AppInfo
 	//AppApi关系列表
 	relationMap      map[string]*models.Relation
-	LastLoadApisTime time.Time //最后一次加载APIMap的时间
+	LoadConfigTime time.Time //最后一次加载APIMap的时间
 	CurrentConfig    *ProxyConfig
 	CurrentBaseDir   string
 	allowIPMap       map[string]int
@@ -208,16 +208,17 @@ func initApiMap() {
 
 	//处理配置文件配置
 	//配置文件不支持group模式
-	for _, api := range CurrentConfig.Apis {
+	for _, api := range CurrentConfig.LocalApis {
 		gateApi := &models.GatewayApiInfo{
 			ApiKey:       api.ApiKey,
-			ApiUrl:       api.ApiUrl,
 			ApiModule:    api.Module,
 			ApiVersion:   api.ApiVersion,
-			HttpMethod:   api.HttpMethod,
 			Status:       api.Status,
 			ValidateType: api.ValidateType,
 			ValidIP:      api.ValidIP,
+		}
+		gateApi.TargetApi = []*models.TargetApiInfo{
+			&models.TargetApiInfo{TargetKey:"local", TargetUrl:api.ApiUrl, CallName:api.CallName, CallMethod:api.CallName},
 		}
 		if gateApi.ValidIP != "" {
 			gateApi.ValidIPs = strings.Split(gateApi.ValidIP, ApiIpSplitChar)
@@ -235,14 +236,9 @@ func initApiMap() {
 	//create alive urls for balance
 	for _, v:=range apiMap{
 		if v.ApiType == _const.ApiType_Balance {
-			v.AliveApiUrls = []string{}
-			if v.TargetApi == nil || len(v.TargetApi) <= 0 {
-				//兼容老的Url字段
-				v.AliveApiUrls = append(v.AliveApiUrls, v.ApiUrl)
-			}else{
-				for _, api := range v.TargetApi {
-					v.AliveApiUrls = append(v.AliveApiUrls, api.TargetUrl)
-				}
+			v.AliveTargetApi = []*models.TargetApiInfo{}
+			for _, api := range v.TargetApi {
+				v.AliveTargetApi = append(v.AliveTargetApi, api)
 			}
 		}
 	}
@@ -309,7 +305,7 @@ func resetAppApiInfo() {
 	//init the relations in app and api
 	initAppApiRelationMap()
 
-	LastLoadApisTime = time.Now()
+	LoadConfigTime = time.Now()
 
 	for _, api := range apiMap {
 		jsons, _ := json.Marshal(api)

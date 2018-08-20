@@ -17,15 +17,11 @@ type GatewayApiInfo struct {
 	ServiceDiscoveryName string
 	//Api Version, like 1,1.1,1.2
 	ApiVersion string
-	//Api对应的真实Url
-	ApiUrl string
 	//Target API
 	TargetApi []*TargetApiInfo
-	//Alive real target urls, used to do balance
+	//Alive real target apis, used to do balance
 	//auto init, no date in storage
-	AliveApiUrls []string
-	//http方法，暂时支持Get、Post
-	HttpMethod string
+	AliveTargetApi []*TargetApiInfo
 	//Api状态 0初始化，100有效，-100暂停
 	Status int
 	//验证类型：0:不验证；1:MD5验证
@@ -42,6 +38,9 @@ type GatewayApiInfo struct {
 type TargetApiInfo struct {
 	TargetKey string
 	TargetUrl string
+	CallName string//used to json rpc
+	//call method, now support HttpGet, HttpPost, JsonRpc
+	CallMethod string
 	Weight    int
 	//Api状态 0初始化，100有效，-100暂停
 	Status int

@@ -67,3 +67,9 @@ const (
 
 	HttpContext_ApiContext = "polaris_ApiContext"
 )
+
+const(
+	CallMethod_HttpGet = "HttpGet"
+	CallMethod_HttpPost = "HttpPost"
+	CallMethod_JsonRPC = "JsonRPC"
+)

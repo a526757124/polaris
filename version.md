@@ -1,9 +1,5 @@
 ## polaris version
 
-#### V1.1
-* Add ValidateMiddleware used to base validate
-* 2018-08-20 10:00
-
 #### V1.0
 * Init version
 * Support:
@@ -14,7 +10,7 @@
   - Auth
   - IP Limit
   - Counter
-  - Metric
+  - Metrics
   - Hystrix
   - RateLimit
   - SideRoad

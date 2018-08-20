@@ -8,7 +8,6 @@ import (
 	"strconv"
 	"time"
 	"github.com/devfeel/polaris/control/hystrix"
-	"github.com/devfeel/polaris/util/slicex"
 )
 
 var (
@@ -25,13 +24,13 @@ func init() {
 * 目前使用随机负载
 * 如果合法，返回具体的某一个ApiUrl
  */
-func GetAliveApi(apiInfo *models.GatewayApiInfo) string {
+func GetAliveApi(apiInfo *models.GatewayApiInfo) *models.TargetApiInfo {
 	if apiInfo.ApiType == _const.ApiType_Group {
-		return ""
+		return nil
 	}
-	api := getRandTarget(apiInfo.AliveApiUrls)
-	if api != ""{
-		LBLogger.Info("[" + strconv.Itoa(apiInfo.ApiID) + "] GetTargetApi=>" + api)
+	api := getRandTarget(apiInfo.AliveTargetApi)
+	if api != nil{
+		LBLogger.Info("[" + strconv.Itoa(apiInfo.ApiID) + "] GetTargetApi=>" + api.TargetKey + ":" + api.TargetUrl + ":" + api.CallName)
 	}else{
 		LBLogger.Info("[" + strconv.Itoa(apiInfo.ApiID) + "] GetTargetApi nil")
 	}
@@ -51,10 +50,10 @@ func SetError(apiInfo *models.GatewayApiInfo, apiUrl string){
 }
 
 //随机从字符串数组里获取一项
-func getRandTarget(apiUrls []string) string {
+func getRandTarget(apiUrls []*models.TargetApiInfo) *models.TargetApiInfo {
 	valLen := len(apiUrls)
 	if valLen <= 0 {
-		return ""
+		return nil
 	} else if valLen == 1 {
 		return apiUrls[0]
 	} else {
@@ -72,10 +71,30 @@ func onTriggerAlive(h hystrix.Hystrix){
 	if apiInfo == nil{
 		return
 	}
-	apiUrl := h.GetID()
-	//add apiUrl into alive urls
-	if !slicex.Exists(apiInfo.AliveApiUrls, apiUrl){
-		apiInfo.AliveApiUrls = append(apiInfo.AliveApiUrls, apiUrl)
+	apiKey := h.GetID()
+	var targetApi *models.TargetApiInfo
+	isExists := false
+	for _, s := range apiInfo.AliveTargetApi {
+		if s.TargetKey == apiKey {
+			isExists = true
+			targetApi = s
+			break
+		}
+	}
+	if !isExists{
+		//nothing to do
+		return
+	}
+	//add target api into alive apis
+	isExists = false
+	for _, s := range apiInfo.AliveTargetApi {
+		if s == targetApi {
+			isExists = true
+			break
+		}
+	}
+	if !isExists{
+		apiInfo.AliveTargetApi = append(apiInfo.AliveTargetApi, targetApi)
 	}
 }
 
@@ -87,9 +106,21 @@ func onTriggerHystrix(h hystrix.Hystrix){
 	if apiInfo == nil{
 		return
 	}
-	apiUrl := h.GetID()
-	//add apiUrl into alive urls
-	if index := slicex.FindIndex(apiInfo.AliveApiUrls, apiUrl);index != -1{
-		apiInfo.AliveApiUrls = append(apiInfo.AliveApiUrls[0:index], apiInfo.AliveApiUrls[index+1:len(apiInfo.AliveApiUrls)]...)
+	apiKey := h.GetID()
+	if index := findTargetApiIndex(apiInfo.AliveTargetApi, apiKey);index != -1{
+		apiInfo.AliveTargetApi = append(apiInfo.AliveTargetApi[0:index], apiInfo.AliveTargetApi[index+1:len(apiInfo.AliveTargetApi)]...)
 	}
+}
+
+
+
+// FindIndex find slice index if a string is in a set
+// if not exists, return -1
+func findTargetApiIndex(set []*models.TargetApiInfo, find string) int{
+	for index, s := range set {
+		if s.TargetKey == find {
+			return index
+		}
+	}
+	return -1
 }

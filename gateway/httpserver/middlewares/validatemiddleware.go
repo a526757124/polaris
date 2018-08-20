@@ -33,7 +33,7 @@ func (m *ValidateMiddleware) Handle(ctx dotweb.Context) error {
 	apiContext := &servermodel.ApiContext{
 		RetCode:      0,
 		RetMsg:       "",
-		TargetApiUrl: "",
+		RealTargetApi: nil,
 		ApiInfo:&models.GatewayApiInfo{},
 		AppInfo:&models.AppInfo{},
 	}
@@ -147,6 +147,8 @@ func (m *ValidateMiddleware) Handle(ctx dotweb.Context) error {
 			}
 		}
 	}
+
+	apiContext.ContentType = ctx.Request().QueryHeader("Content-Type")
 	ctx.Items().Set(_const.HttpContext_ApiContext, apiContext)
 	m.Next(ctx)
 	return nil

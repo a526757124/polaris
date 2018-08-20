@@ -9,7 +9,7 @@ import (
 type ProxyConfig struct {
 	XMLName    xml.Name   `xml:"proxyconfig"`
 	HttpServer HttpServer `xml:"httpserver"`
-	Apis       []Api      `xml:"apis>api"`
+	LocalApis       []LocalApi      `xml:"apis>api"`
 	AllowIPs   []string   `xml:"allowips>ip"`
 	AppSetting AppSetting `xml:"appsetting"`
 	ConsulSet  ConsulSet `xml:"consul"`
@@ -42,12 +42,13 @@ type Redis struct {
 }
 
 //Api配置
-type Api struct {
+type LocalApi struct {
 	Module       string `xml:"module"`
 	ApiKey       string `xml:"apikey"`
 	ApiVersion   string `xml:"apiversion"`
 	ApiUrl       string `xml:"apiurl"`
-	HttpMethod   string `xml:"httpmethod"`
+	CallMethod   string
+	CallName	 string
 	Status       int    `xml:"status"`
 	ValidateType int    `xml:"validatetype"`
 	ValidIP      string `xml:"validip"`
