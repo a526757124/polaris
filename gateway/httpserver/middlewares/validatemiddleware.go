@@ -53,8 +53,9 @@ func (m *ValidateMiddleware) Handle(ctx dotweb.Context) error {
 	//get appid, encrypt
 	gateAppID, gateEncrypt := getGateParam(ctx)
 
-	//query data cleaning
-	apiContext.Query = cleanQueryData(ctx)
+	if apiContext.RetCode == RetCode_OK {
+		request.DoValidate(apiContext)
+	}
 
 	if apiContext.RetCode == RetCode_OK {
 		if gateAppID == "" {
@@ -63,9 +64,8 @@ func (m *ValidateMiddleware) Handle(ctx dotweb.Context) error {
 		}
 	}
 
-	if apiContext.RetCode == RetCode_OK {
-		request.DoValidate(apiContext)
-	}
+	//query data cleaning
+	apiContext.Query = cleanQueryData(ctx)
 
 	//validate md5 sign
 	if apiContext.RetCode == RetCode_OK {
@@ -99,7 +99,6 @@ func resolveApiPath(ctx dotweb.Context) (apiModule, apiKey, apiVersion, apiUrlKe
 // validateMD5Sign validate md5 sign
 func validateMD5Sign(ctx dotweb.Context, md5Key string, appEncrypt string) (retCode int, retMsg string) {
 	queryArgs := ctx.Request().QueryStrings()
-	queryArgs.Del(HttpParam_GateEncrypt)
 	postBody := ""
 	//if post, add post string
 	if ctx.Request().Method == http.MethodPost {
