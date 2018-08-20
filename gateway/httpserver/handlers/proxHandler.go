@@ -3,54 +3,32 @@ package handlers
 
 import (
 	"strconv"
-	"strings"
-	"time"
 	"os"
 	"fmt"
 	"sync"
 	"encoding/json"
-	"errors"
-
 	"github.com/devfeel/dotweb"
-	"github.com/devfeel/polaris/util/httpx"
 	"github.com/devfeel/polaris/config"
 	"github.com/devfeel/polaris/const"
+	. "github.com/devfeel/polaris/gateway/const"
 	"github.com/devfeel/polaris/models"
 	"github.com/devfeel/polaris/util/logx"
 	"github.com/devfeel/polaris/gateway/balance"
 	"github.com/devfeel/polaris/control/metric"
 	"github.com/devfeel/polaris/core/exception"
-	"github.com/devfeel/polaris/gateway/httpserver/servermodel"
-	"github.com/devfeel/polaris/util/rpcx"
+	. "github.com/devfeel/polaris/gateway/models"
+	"github.com/devfeel/polaris/gateway/request"
 )
 
-type ResponseJson struct {
-	RetCode          int
-	RetMsg           string
-	LoadConfigTime 		 time.Time
-	IntervalTime     int64
-	ContentType      string
-	Message          interface{}
-}
 
-type ProxyLog struct {
-	RetCode           int
-	RetMsg            string
-	RequestUrl        string
-	CallInfo 	  	  []*models.TargetApiInfo
-	RawResponseFlag	  bool
-	LoadConfigTime  time.Time
-	IntervalTime      int64
-	ContentType       string
-	Message           interface{}
-}
+
 
 var(
 	gatewayLogger = logger.GatewayLogger
 )
 
 // convertProxyLog convert response to proxy log
-func convertProxyLog(log *ProxyLog, res *ResponseJson){
+func convertProxyLog(log *ProxyLog, res *ProxyResponse){
 	log.RetCode = res.RetCode
 	log.RetMsg = res.RetMsg
 	log.IntervalTime = res.IntervalTime
@@ -59,40 +37,24 @@ func convertProxyLog(log *ProxyLog, res *ResponseJson){
 	log.Message = res.Message
 }
 
-// combineApiUrl根据api地址与查询参数，组合实际访问地址
-func combineApiUrl(targetApiUrl, queryString string) string{
-	//处理参数拼接，考虑是否匹配?和&符号的情况
-	if strings.Contains(targetApiUrl, "?") {
-		if !strings.HasSuffix(targetApiUrl, "&") && !strings.HasSuffix(targetApiUrl, "?") {
-			targetApiUrl = targetApiUrl + "&" + queryString
-		} else {
-			targetApiUrl = targetApiUrl + queryString
-		}
-
-	} else {
-		targetApiUrl = targetApiUrl + "?" + queryString
-	}
-	return targetApiUrl
-}
-
 // getApiContextFromItem get ApiContext from item which is created in validate middleware
-func getApiContextFromItem(ctx dotweb.Context)(*servermodel.ApiContext){
-	var apiContext *servermodel.ApiContext
+func getApiContextFromItem(ctx dotweb.Context)(*ApiContext){
+	var apiContext *ApiContext
 	//get result from validate middleware
-	itemContext, isExists := ctx.Items().Get(_const.HttpContext_ApiContext)
+	itemContext, isExists := ctx.Items().Get(HttpContext_ApiContext)
 	if !isExists{
-		apiContext = &servermodel.ApiContext{
-			RetCode:      _const.RetCode_GetApiContextError,
+		apiContext = &ApiContext{
+			RetCode:      RetCode_GetApiContextError,
 			RetMsg:       "get ApiContex error, no exists item key",
 			ApiInfo:&models.GatewayApiInfo{},
 			AppInfo:&models.AppInfo{},
 		}
 	}else{
 		var isOk bool
-		apiContext, isOk = itemContext.(*servermodel.ApiContext)
+		apiContext, isOk = itemContext.(*ApiContext)
 		if !isOk || apiContext == nil {
-			apiContext = &servermodel.ApiContext{
-				RetCode:      _const.RetCode_GetApiContextError,
+			apiContext = &ApiContext{
+				RetCode:      RetCode_GetApiContextError,
 				RetMsg:       "get ApiContex error, not match type",
 				ApiInfo:      &models.GatewayApiInfo{},
 				AppInfo:      &models.AppInfo{},
@@ -104,50 +66,28 @@ func getApiContextFromItem(ctx dotweb.Context)(*servermodel.ApiContext){
 
 // doBalanceTargetApi do balance real target apiurl
 // if not exists alive target, return error info
-func doBalanceTargetApi(apiContext *servermodel.ApiContext) (retCode int, retMsg string, realTargetApi *models.TargetApiInfo){
-	retCode = _const.RetCode_OK
+func doBalanceTargetApi(apiContext *ApiContext) (retCode int, retMsg string, realTargetApi *models.TargetApiInfo){
+	retCode = RetCode_OK
 
 	if apiContext.ApiInfo.ApiType != _const.ApiType_Balance {
-		retCode = -100010
+		retCode = RetCode_Balance_NobalanceMode
 		retMsg = "get targetapi failed, not balance mode!"
 		return
 	}
-	//获取本次请求处理的目标Api，加入负载机制
+	//load targets, do balance
 	if apiContext.ApiInfo.TargetApi != nil && len(apiContext.ApiInfo.TargetApi) >0 {
 		targetApi := balance.GetAliveApi(apiContext.ApiInfo)
 		if targetApi == nil {
-			retCode = -100010
+			retCode = RetCode_Balance_LoadNil
 			retMsg = "get targetapi failed, load targetapi nil!"
 			return
 		} else{
-			//组合API地址与参数
 			realTargetApi = targetApi
 		}
 	}else{
-		retCode = -100010
+		retCode = RetCode_Balance_LoadNil
 		retMsg = "get targetapi failed, load targetapi nil!"
 		return
-	}
-	return
-}
-
-// doRequestTarget do request match HttpGet\HttpPost\JsonRpc
-func doRequestTarget(apiCtx *servermodel.ApiContext)(body, contentType string, intervalTime int64, err error){
-	if apiCtx.RealTargetApi.CallName == _const.CallMethod_HttpGet{
-		realApiUrl := combineApiUrl(apiCtx.RealTargetApi.TargetUrl, apiCtx.Query)
-		body, contentType, intervalTime, err = httpx.HttpGet(realApiUrl)
-	}else if apiCtx.RealTargetApi.CallName == _const.CallMethod_HttpPost {
-		realApiUrl := combineApiUrl(apiCtx.RealTargetApi.TargetUrl, apiCtx.Query)
-		body, contentType, intervalTime, err = httpx.HttpPost(realApiUrl, string(apiCtx.PostBody), apiCtx.ContentType)
-	}else if apiCtx.RealTargetApi.CallName == _const.CallMethod_JsonRPC {
-		var rpcBody []byte
-		rpcBody, intervalTime, err = rpcx.CallJsonRPC(apiCtx.RealTargetApi.TargetUrl, apiCtx.RealTargetApi.CallName, apiCtx.PostBody)
-		if err != nil{
-			body = string(rpcBody)
-		}
-		contentType = apiCtx.ContentType
-	}else{
-		return "", "", 0, errors.New("no match Call Method")
 	}
 	return
 }
@@ -166,11 +106,11 @@ func OneProxy(ctx dotweb.Context) error{
 	proxyLog := &ProxyLog{
 		RequestUrl:	string(ctx.Request().Url()),
 	}
-	resJson := &ResponseJson{
+	resJson := &ProxyResponse{
 		RetCode : 0,
 		RetMsg : "ok",
 	}
-	var apiContext *servermodel.ApiContext
+	var apiContext *ApiContext
 
 	//get api context from item
 	apiContext = getApiContextFromItem(ctx)
@@ -183,7 +123,7 @@ func OneProxy(ctx dotweb.Context) error{
 		if apiContext.ApiInfo.ApiType == _const.ApiType_Balance {
 			resJson.RetCode, resJson.RetMsg, apiContext.RealTargetApi = doBalanceTargetApi(apiContext)
 			if resJson.RetCode ==0 {
-				body, contentType, intervalTime, err := doRequestTarget(apiContext)
+				body, contentType, intervalTime, err := request.DoRequestTarget(apiContext)
 				if err != nil {
 					resJson.RetCode = -209999
 					resJson.RetMsg = body
@@ -208,14 +148,14 @@ func OneProxy(ctx dotweb.Context) error{
 					defer syncWait.Done()
 					result := new(models.TargetApiResult)
 					result.ApiKey = v.TargetKey
-					body, _, intervalTime, err := doRequestTarget(apiContext)
+					body, _, intervalTime, err := request.DoRequestTarget(apiContext)
 					if err != nil {
-						result.RetCode = _const.RetCode_Error
+						result.RetCode = RetCode_Error
 						result.RetMsg = err.Error()
 					} else {
 						errJson := json.Unmarshal([]byte(body), result)
 						if errJson != nil {
-							result.RetCode = _const.RetCode_JsonUnmarshalError
+							result.RetCode = RetCode_JsonUnmarshalError
 							result.RetMsg = errJson.Error()
 						}
 					}
@@ -224,7 +164,7 @@ func OneProxy(ctx dotweb.Context) error{
 				}()
 			}
 			syncWait.Wait()
-			resJson.RetCode = _const.RetCode_OK
+			resJson.RetCode = RetCode_OK
 			resJson.RetMsg = "ok"
 			resJson.Message = targetResults
 			resJson.IntervalTime = 0
@@ -236,7 +176,7 @@ func OneProxy(ctx dotweb.Context) error{
 	responseContent := ""
 	if resJson.RetCode == 0 {
 		if apiContext.ApiInfo.RawResponseFlag {
-			if resJson.RetCode == _const.RetCode_OK {
+			if resJson.RetCode == RetCode_OK {
 				responseContent = fmt.Sprint(resJson.Message)
 			}
 		}
