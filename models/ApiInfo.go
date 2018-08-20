@@ -17,11 +17,11 @@ type GatewayApiInfo struct {
 	ServiceDiscoveryName string
 	//Api Version, like 1,1.1,1.2
 	ApiVersion string
-	//Target API
-	TargetApi []*TargetApiInfo
+	//Target APIs
+	TargetApis []*TargetApiInfo
 	//Alive real target apis, used to do balance
 	//auto init, no date in storage
-	AliveTargetApi []*TargetApiInfo
+	AliveTargetApis []*TargetApiInfo
 	//Api状态 0初始化，100有效，-100暂停
 	Status int
 	//验证类型：0:不验证；1:MD5验证

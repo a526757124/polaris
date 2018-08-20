@@ -28,7 +28,7 @@ func GetAliveApi(apiInfo *models.GatewayApiInfo) *models.TargetApiInfo {
 	if apiInfo.ApiType == _const.ApiType_Group {
 		return nil
 	}
-	api := getRandTarget(apiInfo.AliveTargetApi)
+	api := getRandTarget(apiInfo.AliveTargetApis)
 	if api != nil{
 		LBLogger.Info("[" + strconv.Itoa(apiInfo.ApiID) + "] GetTargetApi=>" + api.TargetKey + ":" + api.TargetUrl + ":" + api.CallName)
 	}else{
@@ -74,7 +74,7 @@ func onTriggerAlive(h hystrix.Hystrix){
 	apiKey := h.GetID()
 	var targetApi *models.TargetApiInfo
 	isExists := false
-	for _, s := range apiInfo.AliveTargetApi {
+	for _, s := range apiInfo.AliveTargetApis {
 		if s.TargetKey == apiKey {
 			isExists = true
 			targetApi = s
@@ -87,14 +87,14 @@ func onTriggerAlive(h hystrix.Hystrix){
 	}
 	//add target api into alive apis
 	isExists = false
-	for _, s := range apiInfo.AliveTargetApi {
+	for _, s := range apiInfo.AliveTargetApis {
 		if s == targetApi {
 			isExists = true
 			break
 		}
 	}
 	if !isExists{
-		apiInfo.AliveTargetApi = append(apiInfo.AliveTargetApi, targetApi)
+		apiInfo.AliveTargetApis = append(apiInfo.AliveTargetApis, targetApi)
 	}
 }
 
@@ -107,8 +107,8 @@ func onTriggerHystrix(h hystrix.Hystrix){
 		return
 	}
 	apiKey := h.GetID()
-	if index := findTargetApiIndex(apiInfo.AliveTargetApi, apiKey);index != -1{
-		apiInfo.AliveTargetApi = append(apiInfo.AliveTargetApi[0:index], apiInfo.AliveTargetApi[index+1:len(apiInfo.AliveTargetApi)]...)
+	if index := findTargetApiIndex(apiInfo.AliveTargetApis, apiKey);index != -1{
+		apiInfo.AliveTargetApis = append(apiInfo.AliveTargetApis[0:index], apiInfo.AliveTargetApis[index+1:len(apiInfo.AliveTargetApis)]...)
 	}
 }
 

@@ -75,7 +75,7 @@ func doBalanceTargetApi(apiContext *ApiContext) (retCode int, retMsg string, rea
 		return
 	}
 	//load targets, do balance
-	if apiContext.ApiInfo.TargetApi != nil && len(apiContext.ApiInfo.TargetApi) >0 {
+	if apiContext.ApiInfo.TargetApis != nil && len(apiContext.ApiInfo.TargetApis) >0 {
 		targetApi := balance.GetAliveApi(apiContext.ApiInfo)
 		if targetApi == nil {
 			retCode = RetCode_Balance_LoadNil
@@ -142,7 +142,7 @@ func OneProxy(ctx dotweb.Context) error{
 		if apiContext.ApiInfo.ApiType == _const.ApiType_Group{
 			var syncWait sync.WaitGroup
 			var targetResults []*models.TargetApiResult
-			for _, v:=range apiContext.ApiInfo.TargetApi{
+			for _, v:=range apiContext.ApiInfo.TargetApis{
 				syncWait.Add(1)
 				go func() {
 					defer syncWait.Done()
@@ -169,7 +169,7 @@ func OneProxy(ctx dotweb.Context) error{
 			resJson.Message = targetResults
 			resJson.IntervalTime = 0
 			resJson.ContentType = ""
-			proxyLog.CallInfo = apiContext.ApiInfo.TargetApi
+			proxyLog.CallInfo = apiContext.ApiInfo.TargetApis
 		}
 	}
 

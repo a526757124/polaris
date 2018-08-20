@@ -85,7 +85,7 @@ func DoValidate(apiContext *ApiContext) {
 	//validate enough target api when is group type
 	if apiContext.RetCode == RetCode_OK {
 		if apiContext.ApiInfo.ApiType == _const.ApiType_Group {
-			if apiContext.ApiInfo.TargetApi == nil || len(apiContext.ApiInfo.TargetApi) <= 0 {
+			if apiContext.ApiInfo.TargetApis == nil || len(apiContext.ApiInfo.TargetApis) <= 0 {
 				apiContext.RetMsg = "get targetapi failed, load targetapi nil!"
 				apiContext.RetCode = RetCode_Validate_NoEnoughApiInGroup
 			}

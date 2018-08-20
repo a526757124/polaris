@@ -182,17 +182,17 @@ func initApiMap() {
 					innerLogger.Error("ProxyConfig::initApiMap api target api service host info is empty")
 					continue
 				}
-				if len(api.TargetApi) <= 0{
+				if len(api.TargetApis) <= 0{
 					innerLogger.Error("ProxyConfig::initApiMap api target api path is empty")
 					continue
 				}
 				//默认取第一个配置项
-				pathUrl := api.TargetApi[0].TargetUrl
-				api.TargetApi = []*models.TargetApiInfo{}
+				pathUrl := api.TargetApis[0].TargetUrl
+				api.TargetApis = []*models.TargetApiInfo{}
 				//init TargetApiInfo
 				weight := 100 / len(services)
 				for index, v:=range services{
-					api.TargetApi = append(api.TargetApi, &models.TargetApiInfo{
+					api.TargetApis = append(api.TargetApis, &models.TargetApiInfo{
 						TargetKey:strconv.Itoa(index),
 						TargetUrl:v.Address + ":" + strconv.Itoa(v.Port) + pathUrl,
 						Weight:weight,
@@ -217,7 +217,7 @@ func initApiMap() {
 			ValidateType: api.ValidateType,
 			ValidIP:      api.ValidIP,
 		}
-		gateApi.TargetApi = []*models.TargetApiInfo{
+		gateApi.TargetApis = []*models.TargetApiInfo{
 			&models.TargetApiInfo{TargetKey:"local", TargetUrl:api.ApiUrl, CallName:api.CallName, CallMethod:api.CallName},
 		}
 		if gateApi.ValidIP != "" {
@@ -236,9 +236,9 @@ func initApiMap() {
 	//create alive urls for balance
 	for _, v:=range apiMap{
 		if v.ApiType == _const.ApiType_Balance {
-			v.AliveTargetApi = []*models.TargetApiInfo{}
-			for _, api := range v.TargetApi {
-				v.AliveTargetApi = append(v.AliveTargetApi, api)
+			v.AliveTargetApis = []*models.TargetApiInfo{}
+			for _, api := range v.TargetApis {
+				v.AliveTargetApis = append(v.AliveTargetApis, api)
 			}
 		}
 	}
