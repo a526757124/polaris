@@ -10,6 +10,7 @@ import (
 
 	"github.com/devfeel/dotweb"
 	"github.com/devfeel/polaris/gateway/httpserver/handlers"
+	"github.com/devfeel/polaris/gateway/httpserver/middlewares"
 )
 
 func StartServer(logPath string) error {
@@ -31,8 +32,8 @@ func StartServer(logPath string) error {
 }
 
 func InitRoute(dotweb *dotweb.DotWeb) {
-	dotweb.HttpServer.Router().GET("/api/:module/:version/:apikey", handlers.ProxyGet)
-	dotweb.HttpServer.Router().POST("/api/:module/:version/:apikey", handlers.ProxyPost)
+	dotweb.HttpServer.Router().GET("/api/:module/:version/:apikey", handlers.ProxyGet).Use(middlewares.NewValidateMiddleware())
+	dotweb.HttpServer.Router().POST("/api/:module/:version/:apikey", handlers.ProxyPost).Use(middlewares.NewValidateMiddleware())
 	dotweb.HttpServer.Router().GET("/local/:module/:version/:apikey", handlers.ProxyLocal)
 	dotweb.HttpServer.Router().GET("/", handlers.Index)
 	dotweb.HttpServer.Router().GET("/monitor", handlers.Monitor)
