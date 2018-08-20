@@ -2,29 +2,27 @@ package models
 
 //网关Api信息
 type GatewayApiInfo struct {
-	//Api编号
+	//Api Unique ID
 	ApiID int
 	//ApiModule
 	ApiModule string
-	//ApiKey，用于定位
+	//ApiKey
 	ApiKey string
-	//API类型，一般表示为组合或者负载类型
-	//参考ApiType_Balance，ApiType_Group
+	//API Type
+	//Now support ApiType_Balance，ApiType_Group
 	ApiType int
-
 	//服务Host类型，默认为录入方式
 	ServiceHostType int
 	//服务发现注册的服务名
 	ServiceDiscoveryName string
-
-
-	//Api版本，例如1,1.1,1.2之类，默认1
+	//Api Version, like 1,1.1,1.2
 	ApiVersion string
 	//Api对应的真实Url
 	ApiUrl string
 	//Target API
 	TargetApi []*TargetApiInfo
-	//Api对应的存活目标Api数组，用于负载
+	//Alive real target urls, used to do balance
+	//auto init, no date in storage
 	AliveApiUrls []string
 	//http方法，暂时支持Get、Post
 	HttpMethod string
