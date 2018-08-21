@@ -3,7 +3,7 @@ package models
 //网关Api信息
 type GatewayApiInfo struct {
 	//Api Unique ID
-	ApiID int
+	ApiID string
 	//ApiModule
 	ApiModule string
 	//ApiKey

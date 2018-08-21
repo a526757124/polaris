@@ -4,7 +4,6 @@ import (
 	"github.com/devfeel/polaris/control/ratelimit"
 	. "github.com/devfeel/polaris/gateway/models"
 	. "github.com/devfeel/polaris/gateway/const"
-	"strconv"
 	"github.com/devfeel/polaris/config"
 	"github.com/devfeel/polaris/const"
 	"github.com/devfeel/polaris/models"
@@ -78,7 +77,7 @@ func DoValidate(apiContext *ApiContext) {
 
 	//rate limit
 	if apiContext.RetCode == RetCode_OK {
-		isInLimit := ratelimit.RedisLimiter.RequestCheck(strconv.Itoa(apiContext.ApiInfo.ApiID)+"_"+apiContext.RemoteIP, 1)
+		isInLimit := ratelimit.RedisLimiter.RequestCheck(apiContext.ApiInfo.ApiID+"_"+apiContext.RemoteIP, 1)
 		if !isInLimit {
 			apiContext.RetMsg = "The number of requests exceeds the upper limit of each minute"
 			apiContext.RetCode = RetCode_Validate_RateLimit

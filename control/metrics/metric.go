@@ -57,11 +57,11 @@ func AddRequestCount(num int64){
 }
 
 //添加Api计数信息
-func AddApiCount(appId string, apiId int, apiModule string, apiName string, apiVersion string, count uint, retCode string) {
+func AddApiCount(appId string, apiId string, apiModule string, apiName string, apiVersion string, count uint, retCode string) {
 	AddRequestCount(1)
 	countInfo := ApiCountInfo{
 		AppID:      appId,
-		ApiID:      strconv.Itoa(apiId),
+		ApiID:      apiId,
 		ApiModule:  apiModule,
 		ApiName:    apiName,
 		ApiVersion: apiVersion,

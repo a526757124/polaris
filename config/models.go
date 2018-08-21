@@ -9,19 +9,20 @@ import (
 type ProxyConfig struct {
 	XMLName    	xml.Name   	`xml:"Config"`
 	Server 		Server 		`xml:"Server"`
-	GlobalSet 	GlobalSet 	`xml:"GlobalSet"`
-	ConsulSet  	ConsulSet 	`xml:"Consul"`
+	Global 		Global 		`xml:"Global"`
+	Consul  	Consul		`xml:"Consul"`
 	Redis      	Redis      	`xml:"Redis"`
 }
 
 //基础应用配置
-type GlobalSet struct {
+type Global struct {
 	CountLogApi				string
 	ConfigCacheMins 		int
+	UseDefaultTestApp		bool
 }
 
 //Consul config
-type ConsulSet struct{
+type Consul struct{
 	IsUse bool
 	ServerUrl string
 }

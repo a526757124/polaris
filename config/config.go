@@ -13,17 +13,17 @@ import (
 	"github.com/devfeel/polaris/util/logx"
 	"github.com/devfeel/polaris/const"
 	"github.com/devfeel/polaris/util/consul"
-	"github.com/devfeel/polaris/core/exception"
 	"github.com/devfeel/polaris/cache"
+	"errors"
 )
 
 //默认ApiKey，当指定ApiKey无对应ApiUrl时，返回该项
 const (
 	DefaultApiKey  = "default"
-	ApiSplitChar   = "^$^"
+	DefaultTestApp = "0"
 	ApiIpSplitChar = ","
 	//最大缓存时间，单位是分钟
-	Default_MaxCacheTime = 5
+	DefaultMaxCacheTime = 5
 )
 
 var (
@@ -50,96 +50,101 @@ func init() {
 	mutex = new(sync.RWMutex)
 	allowIpMutex = new(sync.RWMutex)
 	innerLogger = logger.InnerLogger
-	configCacheTime = Default_MaxCacheTime
+	configCacheTime = DefaultMaxCacheTime
 }
 
 func SetBaseDir(baseDir string) {
 	CurrentBaseDir = baseDir
 }
 
-//初始化配置信息
+// InitConfig init config from config file and redis
 func InitConfig(configFile string) *ProxyConfig {
 	content, err := ioutil.ReadFile(configFile)
 	if err != nil {
-		innerLogger.Warn("ProxyConfig::InitConfig 配置文件[" + configFile + "]无法解析 - " + err.Error())
+		innerLogger.Warn("ProxyConfig::InitConfig parse config [" + configFile + "] read error - " + err.Error())
 		os.Exit(1)
 	}
 
 	result := &ProxyConfig{}
 	err = xml.Unmarshal(content, result)
 	if err != nil {
-		innerLogger.Warn("ProxyConfig::InitConfig 配置文件[" + configFile + "]解析失败 - " + err.Error())
+		innerLogger.Warn("ProxyConfig::InitConfig parse config [" + configFile + "] Unmarshal error - " + err.Error())
 		os.Exit(1)
 	}
 	CurrentConfig = result
 
 	//初始化App、Api信息
-	resetAppApiInfo()
+	err = loadAppApiInfo()
+	if err != nil {
+		innerLogger.Warn("ProxyConfig::InitConfig loadAppApiInfo error - " + err.Error())
+		os.Exit(1)
+	}
 
-	if CurrentConfig.GlobalSet.ConfigCacheMins > 0{
-		configCacheTime = CurrentConfig.GlobalSet.ConfigCacheMins
+	if CurrentConfig.Global.ConfigCacheMins > 0{
+		configCacheTime = CurrentConfig.Global.ConfigCacheMins
 	}
 
 	//启动定时重置App、Api信息
-	go CronTask_ResetAppApiInfo()
+	go cycleReLoadAppApiInfo()
 
 	return CurrentConfig
 }
 
-//初始化App信息
-func initAppMap() {
+func initAppMap() error{
 	innerLogger.Debug("ProxyConfig::initAppMap begin")
-	//从redis获取数据
+	//load data from redis
 	redisClient := getRedisCache()
 	apps, err := redisClient.HGetAll(_const.Redis_Key_AppMap)
 	if err != nil {
 		innerLogger.Error("ProxyConfig::initAppMap:redisClient.HGetAll error: " + err.Error())
-		return
+		return err
 	}
 
 	tmpMap := make(map[string]*models.AppInfo)
-	//处理Redis配置
 	for _, v := range apps {
 		app := &models.AppInfo{}
 		errUnmarshal := json.Unmarshal([]byte(v), app)
 		if errUnmarshal != nil {
 			innerLogger.Error("ProxyConfig::initAppMap:json.Unmarshal error: " + err.Error())
 		}
-		tmpMap[strconv.Itoa(app.AppID)] = app
+		tmpMap[app.AppID] = app
 	}
 
-	//特殊处理
-	app := &models.AppInfo{
-		AppID:   10000,
-		AppName: "基础应用",
-		AppKey:  "",
-		Status:  0,
+	checkDataLen := 0
+	if CurrentConfig.Global.UseDefaultTestApp{
+		checkDataLen = 1
+		app := &models.AppInfo{
+			AppID:   DefaultTestApp,
+			AppName: "PolarisDefaultApp",
+			AppKey:  "",
+			Status:  0,
+		}
+		tmpMap[app.AppID] = app
 	}
-	tmpMap[strconv.Itoa(app.AppID)] = app
 
-	//处理极端数据情况
-	if len(tmpMap) > 1{
+
+	//if load data not exists, no update memory config
+	if len(tmpMap) > checkDataLen{
 		mutex.Lock()
 		defer mutex.Unlock()
 		appMap = tmpMap
 	}
+
 	innerLogger.Debug("ProxyConfig::initAppMap end => " + strconv.Itoa(len(appMap)) + " records")
+	return nil
 }
 
-//初始化ApiMap
-func initApiMap() {
+func initApiMap() error{
 	innerLogger.Debug("ProxyConfig::initApiMap begin")
-	//从redis获取数据
+	//load data from redis
 	redisClient := getRedisCache()
-
 	apis, err := redisClient.HGetAll(_const.Redis_Key_ApiMap)
 	if err != nil {
 		innerLogger.Error("ProxyConfig::initApiMap:redisClient.HGetAll error : " + err.Error())
-		return
+		return err
 	}
 
 	tmpMap := make(map[string]*models.GatewayApiInfo)
-	//处理Redis配置
 	for _, v := range apis {
 		api := &models.GatewayApiInfo{}
 		errUnmarshal := json.Unmarshal([]byte(v), api)
@@ -151,13 +156,13 @@ func initApiMap() {
 			api.ValidIPs = strings.Split(api.ValidIP, ApiIpSplitChar)
 		}
 
-		//Consul处理
+		//load data from consul
 		if api.ServiceHostType == _const.ServiceHostType_Consul{
 			if api.ApiType == _const.ApiType_Group{
 				innerLogger.Error("ProxyConfig::initApiMap group mode not support consul service mode")
 				continue
 			}
-			if !CurrentConfig.ConsulSet.IsUse{
+			if !CurrentConfig.Consul.IsUse{
 				innerLogger.Error("ProxyConfig::initApiMap Api need consul service but current gateway config not use consul set")
 				continue
 			}
@@ -166,7 +171,7 @@ func initApiMap() {
 				continue
 			}else{
 				tag := ""
-				services, err := consul.FindService(CurrentConfig.ConsulSet.ServerUrl, api.ServiceDiscoveryName, tag)
+				services, err := consul.FindService(CurrentConfig.Consul.ServerUrl, api.ServiceDiscoveryName, tag)
 				if err != nil{
 					innerLogger.Error("ProxyConfig::initApiMap Api need consul service but load services error" + err.Error())
 					continue
@@ -199,14 +204,15 @@ func initApiMap() {
 		tmpMap[api.ApiModule+"/"+api.ApiKey+"/"+api.ApiVersion] = api
 	}
 
-	//处理极端数据情况
-	if len(tmpMap) > 0{
+	//if load data not exists, no update memory config
+	checkDataLen := 0
+	if len(tmpMap) > checkDataLen{
 		mutex.Lock()
 		defer mutex.Unlock()
 		apiMap = tmpMap
 	}
 
-	//create alive urls for balance
+	//create alive targets for balance
 	for _, v:=range apiMap{
 		if v.ApiType == _const.ApiType_Balance {
 			v.AliveTargetApis = []*models.TargetApiInfo{}
@@ -217,22 +223,20 @@ func initApiMap() {
 	}
 
 	innerLogger.Debug("ProxyConfig::initApiMap end => " + strconv.Itoa(len(apiMap)) + " records")
-
+	return nil
 }
 
-//初始化AppApiRelation信息
-func initAppApiRelationMap() {
+func initAppApiRelationMap() error{
 	innerLogger.Debug("ProxyConfig::initAppApiRelationMap begin")
-	//从redis获取数据
+	//load data from redis
 	redisClient := getRedisCache()
 	relations, err := redisClient.HGetAll(_const.Redis_Key_AppApiRelation)
 	if err != nil {
 		innerLogger.Error("ProxyConfig::initAppApiRelationMap:redisClient.HGetAll error: " + err.Error())
-		return
+		return err
 	}
 
 	tmpMap := make(map[string]*models.Relation)
-	//处理Redis配置
 	for k, v := range relations {
 		relation :=&models.Relation{}
 		errUnmarshal := json.Unmarshal([]byte(v), relation)
@@ -242,37 +246,44 @@ func initAppApiRelationMap() {
 		tmpMap[k] = relation
 	}
 
-	//处理极端数据情况
-	if len(tmpMap) > 0{
+	//if load data not exists, no update memory config
+	checkDataLen := 0
+	if len(tmpMap) > checkDataLen{
 		mutex.Lock()
 		defer mutex.Unlock()
 		relationMap = tmpMap
 	}
 	innerLogger.Debug("ProxyConfig::initAppApiRelationMap end => " + strconv.Itoa(len(relationMap)) + " records")
+	return nil
 }
 
 
-// resetAppApiInfo
+// loadAppApiInfo
 // 1.load app info from redis
 // 2.load api info from redis
 // 3.load relations in app and api from redis
 // 4.update LastConfigTime
-func resetAppApiInfo() {
+func loadAppApiInfo() error{
 
-	defer func() {
-		if err := recover(); err != nil {
-			ex := exception.CatchError(_const.ProjectName+":resetAppApiInfo error!", err)
-			logger.DefaultLogger.Error(ex.GetDefaultLogString())
-			os.Stdout.Write([]byte(ex.GetDefaultLogString()))
-		}
-	}()
+	if CurrentConfig.Redis.ServerUrl == ""{
+		return errors.New("no redis server config")
+	}
 
 	//init app list from config
-	initAppMap()
+	err := initAppMap()
+	if err != nil{
+		return err
+	}
 	//init api list from config
-	initApiMap()
+	err = initApiMap()
+	if err != nil{
+		return err
+	}
 	//init the relations in app and api
-	initAppApiRelationMap()
+	err = initAppApiRelationMap()
+	if err != nil{
+		return err
+	}
 
 	LoadConfigTime = time.Now()
 
@@ -290,6 +301,7 @@ func resetAppApiInfo() {
 		jsons, _ := json.Marshal(relation)
 		innerLogger.Debug("ProxyConfig::LoadAppApiInfo ConfigAppApiRelation=>" + string(jsons))
 	}
+	return nil
 }
 
 func getRedisCache() cache.RedisCache{
@@ -297,21 +309,20 @@ func getRedisCache() cache.RedisCache{
 }
 
 
-//计划任务-重置App、Api信息
-//间隔时间依据MaxCacheTime设置
-func CronTask_ResetAppApiInfo() {
-	TimeTicker_Task := time.NewTicker(time.Minute * time.Duration(configCacheTime))
+// cycleReLoadAppApiInfo
+func cycleReLoadAppApiInfo() {
+	ticker := time.NewTicker(time.Minute * time.Duration(configCacheTime))
 	for {
 		select {
-		case <-TimeTicker_Task.C:
+		case <-ticker.C:
 			innerLogger.Debug("ProxyConfig::CronTask_ResetAppApiInfo begin")
-			resetAppApiInfo()
+			loadAppApiInfo()
 			innerLogger.Debug("ProxyConfig::CronTask_ResetAppApiInfo end")
 		}
 	}
 }
 
-//根据AppID获取对应的AppInfo
+// GetAppInfo get app with appID
 func GetAppInfo(appID string) (appInfo *models.AppInfo, ok bool) {
 	mutex.RLock()
 	v, mok := appMap[appID]
@@ -322,19 +333,22 @@ func GetAppInfo(appID string) (appInfo *models.AppInfo, ok bool) {
 	return
 }
 
+// GetAppList get all app map
 func GetAppList() map[string]*models.AppInfo {
 	return appMap
 }
 
+// GetApiList get all api map
 func GetApiList() map[string]*models.GatewayApiInfo {
 	return apiMap
 }
 
+// GetRelationList get all relation map
 func GetRelationList() map[string]*models.Relation {
 	return relationMap
 }
 
-//根据apiKey获取对应的ApiUrl
+// GetApiInfo get api with apiKey
 func GetApiInfo(apiKey string) (apiInfo *models.GatewayApiInfo, ok bool) {
 	mutex.RLock()
 	v, mok := apiMap[apiKey]
@@ -345,13 +359,13 @@ func GetApiInfo(apiKey string) (apiInfo *models.GatewayApiInfo, ok bool) {
 	return
 }
 
-//检查指定App与Api是否存在权限关系
-func CheckAppApiRelation(appId int, apiId int) (ok bool) {
-	//特殊的，如果为测试应用，默认放行
-	if appId == 10000 {
+// CheckAppApiRelation check relation in app and api
+func CheckAppApiRelation(appId string, apiId string) (ok bool) {
+	//if use default app, have all permission
+	if appId == DefaultTestApp {
 		return true
 	}
-	mapKey := strconv.Itoa(appId) + "." + strconv.Itoa(apiId)
+	mapKey := appId + "." + apiId
 	mutex.RLock()
 	relation, mok := relationMap[mapKey]
 	mutex.RUnlock()

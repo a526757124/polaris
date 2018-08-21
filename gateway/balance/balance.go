@@ -5,7 +5,6 @@ import (
 	"github.com/devfeel/polaris/models"
 	"github.com/devfeel/polaris/const"
 	"math/rand"
-	"strconv"
 	"time"
 	"github.com/devfeel/polaris/control/hystrix"
 )
@@ -30,15 +29,15 @@ func GetAliveApi(apiInfo *models.GatewayApiInfo) *models.TargetApiInfo {
 	}
 	api := getRandTarget(apiInfo.AliveTargetApis)
 	if api != nil{
-		LBLogger.Info("[" + strconv.Itoa(apiInfo.ApiID) + "] GetTargetApi=>" + api.TargetKey + ":" + api.TargetUrl + ":" + api.CallName)
+		LBLogger.Info("[" + apiInfo.ApiID + "] GetTargetApi=>" + api.TargetKey + ":" + api.TargetUrl + ":" + api.CallName)
 	}else{
-		LBLogger.Info("[" + strconv.Itoa(apiInfo.ApiID) + "] GetTargetApi nil")
+		LBLogger.Info("[" + apiInfo.ApiID + "] GetTargetApi nil")
 	}
 	return api
 }
 
 func SetError(apiInfo *models.GatewayApiInfo, apiUrl string){
-	apiHystrix, isInit := hystrix.GetHystrix(strconv.Itoa(apiInfo.ApiID) + "^$^" + apiUrl)
+	apiHystrix, isInit := hystrix.GetHystrix(apiInfo.ApiID + "^$^" + apiUrl)
 	if isInit{
 		apiHystrix.SetID(apiUrl)
 		apiHystrix.SetExtendedData(apiInfo)
