@@ -2,9 +2,6 @@ package config
 
 import (
 	"encoding/json"
-	"encoding/xml"
-	"io/ioutil"
-	"os"
 	"strconv"
 	"strings"
 	"sync"
@@ -15,40 +12,41 @@ import (
 	"github.com/devfeel/polaris/util/consul"
 	"github.com/devfeel/polaris/cache"
 	"errors"
+	"io/ioutil"
+	"encoding/xml"
+	"os"
+	"fmt"
 )
 
-//默认ApiKey，当指定ApiKey无对应ApiUrl时，返回该项
 const (
 	DefaultApiKey  = "default"
 	DefaultTestApp = "0"
 	ApiIpSplitChar = ","
-	//最大缓存时间，单位是分钟
 	DefaultMaxCacheTime = 5
 )
 
 var (
-	//app、api等缓存时间，单位为分钟
 	configCacheTime int
-	//Api列表
-	apiMap map[string]*models.GatewayApiInfo
-	//App列表
-	appMap map[string]*models.AppInfo
-	//AppApi关系列表
-	relationMap      map[string]*models.Relation
-	LoadConfigTime time.Time
-	CurrentConfig    *ProxyConfig
-	CurrentBaseDir   string
-	allowIPMap       map[string]int
-	innerLogger      logger.Logger
+	apiMap 		map[string]*models.GatewayApiInfo
+	apiMutex	*sync.RWMutex
+	appMap 		map[string]*models.AppInfo
+	appMutex	*sync.RWMutex
+	relationMap	map[string]*models.Relation
+	relationMutex	*sync.RWMutex
 
-	mutex        *sync.RWMutex
-	allowIpMutex *sync.RWMutex
+
+	LoadConfigTime 		time.Time
+	CurrentConfig    	*ProxyConfig
+	CurrentBaseDir   	string
+	CurrentConfigFile 	string
+	innerLogger      	logger.Logger
 )
 
 func init() {
-	//初始化读写锁
-	mutex = new(sync.RWMutex)
-	allowIpMutex = new(sync.RWMutex)
+	apiMutex = new(sync.RWMutex)
+	appMutex = new(sync.RWMutex)
+	relationMutex = new(sync.RWMutex)
+
 	innerLogger = logger.InnerLogger
 	configCacheTime = DefaultMaxCacheTime
 }
@@ -59,17 +57,32 @@ func SetBaseDir(baseDir string) {
 
 // InitConfig init config from config file and redis
 func InitConfig(configFile string) *ProxyConfig {
-	content, err := ioutil.ReadFile(configFile)
-	if err != nil {
-		innerLogger.Warn("ProxyConfig::InitConfig parse config [" + configFile + "] read error - " + err.Error())
+	CurrentConfigFile = configFile
+
+	err := initConfig()
+	if err != nil{
+		fmt.Println("InitConfig err", err)
 		os.Exit(1)
+	}
+
+	//启动定时重置App、Api信息
+	go jobReLoadConfigInfo()
+
+	return CurrentConfig
+}
+
+func initConfig() error{
+	content, err := ioutil.ReadFile(CurrentConfigFile)
+	if err != nil {
+		innerLogger.Warn("ProxyConfig::InitConfig parse config [" + CurrentConfigFile + "] read error - " + err.Error())
+		return err
 	}
 
 	result := &ProxyConfig{}
 	err = xml.Unmarshal(content, result)
 	if err != nil {
-		innerLogger.Warn("ProxyConfig::InitConfig parse config [" + configFile + "] Unmarshal error - " + err.Error())
-		os.Exit(1)
+		innerLogger.Warn("ProxyConfig::InitConfig parse config [" + CurrentConfigFile + "] Unmarshal error - " + err.Error())
+		return err
 	}
 	CurrentConfig = result
 
@@ -77,17 +90,13 @@ func InitConfig(configFile string) *ProxyConfig {
 	err = loadAppApiInfo()
 	if err != nil {
 		innerLogger.Warn("ProxyConfig::InitConfig loadAppApiInfo error - " + err.Error())
-		os.Exit(1)
+		return err
 	}
 
 	if CurrentConfig.Global.ConfigCacheMins > 0{
 		configCacheTime = CurrentConfig.Global.ConfigCacheMins
 	}
-
-	//启动定时重置App、Api信息
-	go cycleReLoadAppApiInfo()
-
-	return CurrentConfig
+	return nil
 }
 
 func initAppMap() error{
@@ -125,8 +134,8 @@ func initAppMap() error{
 
 	//if load data not exists, no update memory config
 	if len(tmpMap) > checkDataLen{
-		mutex.Lock()
-		defer mutex.Unlock()
+		appMutex.Lock()
+		defer appMutex.Unlock()
 		appMap = tmpMap
 	}
 
@@ -207,8 +216,8 @@ func initApiMap() error{
 	//if load data not exists, no update memory config
 	checkDataLen := 0
 	if len(tmpMap) > checkDataLen{
-		mutex.Lock()
-		defer mutex.Unlock()
+		apiMutex.Lock()
+		defer apiMutex.Unlock()
 		apiMap = tmpMap
 	}
 
@@ -226,13 +235,13 @@ func initApiMap() error{
 	return nil
 }
 
-func initAppApiRelationMap() error{
-	innerLogger.Debug("ProxyConfig::initAppApiRelationMap begin")
+func initRelationMap() error{
+	innerLogger.Debug("ProxyConfig::initRelationMap begin")
 	//load data from redis
 	redisClient := getRedisCache()
 	relations, err := redisClient.HGetAll(_const.Redis_Key_AppApiRelation)
 	if err != nil {
-		innerLogger.Error("ProxyConfig::initAppApiRelationMap:redisClient.HGetAll error: " + err.Error())
+		innerLogger.Error("ProxyConfig::initRelationMap:redisClient.HGetAll error: " + err.Error())
 		return err
 	}
 
@@ -241,7 +250,7 @@ func initAppApiRelationMap() error{
 		relation :=&models.Relation{}
 		errUnmarshal := json.Unmarshal([]byte(v), relation)
 		if errUnmarshal != nil {
-			innerLogger.Error("ProxyConfig::initAppApiRelationMap:json.Unmarshal error: " + err.Error())
+			innerLogger.Error("ProxyConfig::initRelationMap:json.Unmarshal error: " + err.Error())
 		}
 		tmpMap[k] = relation
 	}
@@ -249,14 +258,13 @@ func initAppApiRelationMap() error{
 	//if load data not exists, no update memory config
 	checkDataLen := 0
 	if len(tmpMap) > checkDataLen{
-		mutex.Lock()
-		defer mutex.Unlock()
+		relationMutex.Lock()
+		defer relationMutex.Unlock()
 		relationMap = tmpMap
 	}
-	innerLogger.Debug("ProxyConfig::initAppApiRelationMap end => " + strconv.Itoa(len(relationMap)) + " records")
+	innerLogger.Debug("ProxyConfig::initRelationMap end => " + strconv.Itoa(len(relationMap)) + " records")
 	return nil
 }
-
 
 // loadAppApiInfo
 // 1.load app info from redis
@@ -280,7 +288,7 @@ func loadAppApiInfo() error{
 		return err
 	}
 	//init the relations in app and api
-	err = initAppApiRelationMap()
+	err = initRelationMap()
 	if err != nil{
 		return err
 	}
@@ -308,15 +316,14 @@ func getRedisCache() cache.RedisCache{
 	return cache.GetRedisCache(CurrentConfig.Redis.ServerUrl, CurrentConfig.Redis.BackupServerUrl, CurrentConfig.Redis.MaxIdle, CurrentConfig.Redis.MaxActive)
 }
 
-
-// cycleReLoadAppApiInfo
-func cycleReLoadAppApiInfo() {
+// job_ReLoadConfigInfo
+func jobReLoadConfigInfo() {
 	ticker := time.NewTicker(time.Minute * time.Duration(configCacheTime))
 	for {
 		select {
 		case <-ticker.C:
 			innerLogger.Debug("ProxyConfig::CronTask_ResetAppApiInfo begin")
-			loadAppApiInfo()
+			initConfig()
 			innerLogger.Debug("ProxyConfig::CronTask_ResetAppApiInfo end")
 		}
 	}
@@ -324,9 +331,9 @@ func cycleReLoadAppApiInfo() {
 
 // GetAppInfo get app with appID
 func GetAppInfo(appID string) (appInfo *models.AppInfo, ok bool) {
-	mutex.RLock()
+	appMutex.RLock()
 	v, mok := appMap[appID]
-	mutex.RUnlock()
+	appMutex.RUnlock()
 
 	ok = mok
 	appInfo = v
@@ -350,25 +357,25 @@ func GetRelationList() map[string]*models.Relation {
 
 // GetApiInfo get api with apiKey
 func GetApiInfo(apiKey string) (apiInfo *models.GatewayApiInfo, ok bool) {
-	mutex.RLock()
+	apiMutex.RLock()
 	v, mok := apiMap[apiKey]
-	mutex.RUnlock()
+	apiMutex.RUnlock()
 
 	ok = mok
 	apiInfo = v
 	return
 }
 
-// CheckAppApiRelation check relation in app and api
-func CheckAppApiRelation(appId string, apiId string) (ok bool) {
+// CheckRelation check relation in app and api
+func CheckRelation(appId string, apiId string) (ok bool) {
 	//if use default app, have all permission
 	if appId == DefaultTestApp {
 		return true
 	}
 	mapKey := appId + "." + apiId
-	mutex.RLock()
+	relationMutex.RLock()
 	relation, mok := relationMap[mapKey]
-	mutex.RUnlock()
+	relationMutex.RUnlock()
 
 	isUse := mok
 	if mok {

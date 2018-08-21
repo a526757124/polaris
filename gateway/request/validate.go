@@ -52,7 +52,7 @@ func DoValidate(apiContext *ApiContext) {
 	}
 
 	if apiContext.RetCode == RetCode_OK {
-		if !config.CheckAppApiRelation(apiContext.AppInfo.AppID, apiContext.ApiInfo.ApiID) {
+		if !config.CheckRelation(apiContext.AppInfo.AppID, apiContext.ApiInfo.ApiID) {
 			apiContext.RetMsg = "no have this api's permissions"
 			apiContext.RetCode = RetCode_Validate_NoHaveApiPermissions
 		}
