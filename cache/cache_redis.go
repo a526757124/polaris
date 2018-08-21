@@ -230,6 +230,17 @@ func (ca *redisCache) HMGet(hashID string, field ...interface{}) ([]string, erro
 	return reply, err
 }
 
+// HGetAll Returns all fields and values of the hash stored at key
+func (ca *redisCache) HGetAll(key string) (map[string]string, error) {
+	client := ca.getRedisClient()
+	reply, err := client.HGetAll(key)
+	if ca.checkConnErrorAndNeedRetry(err){
+		client = ca.getBackupRedis()
+		return client.HGetAll(key)
+	}
+	return reply, err
+}
+
 // HSet Sets field in the hash stored at key to value. If key does not exist, a new key holding a hash is created.
 // If field already exists in the hash, it is overwritten.
 func (ca *redisCache) HSet(key, field, value string) error {

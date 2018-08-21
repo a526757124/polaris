@@ -11,10 +11,10 @@ import (
 	"time"
 	"github.com/devfeel/polaris/models"
 	"github.com/devfeel/polaris/util/logx"
-	"github.com/devfeel/polaris/util/redisx"
 	"github.com/devfeel/polaris/const"
 	"github.com/devfeel/polaris/util/consul"
 	"github.com/devfeel/polaris/core/exception"
+	"github.com/devfeel/polaris/cache"
 )
 
 //默认ApiKey，当指定ApiKey无对应ApiUrl时，返回该项
@@ -90,7 +90,7 @@ func InitConfig(configFile string) *ProxyConfig {
 func initAppMap() {
 	innerLogger.Debug("ProxyConfig::initAppMap begin")
 	//从redis获取数据
-	redisClient := redisx.GetRedisClient(CurrentConfig.Redis.ServerUrl, CurrentConfig.Redis.MaxIdle, CurrentConfig.Redis.MaxActive)
+	redisClient := getRedisCache()
 	apps, err := redisClient.HGetAll(_const.Redis_Key_AppMap)
 	if err != nil {
 		innerLogger.Error("ProxyConfig::initAppMap:redisClient.HGetAll error: " + err.Error())
@@ -130,7 +130,7 @@ func initAppMap() {
 func initApiMap() {
 	innerLogger.Debug("ProxyConfig::initApiMap begin")
 	//从redis获取数据
-	redisClient := redisx.GetRedisClient(CurrentConfig.Redis.ServerUrl, CurrentConfig.Redis.MaxIdle, CurrentConfig.Redis.MaxActive)
+	redisClient := getRedisCache()
 
 	apis, err := redisClient.HGetAll(_const.Redis_Key_ApiMap)
 	if err != nil {
@@ -224,7 +224,7 @@ func initApiMap() {
 func initAppApiRelationMap() {
 	innerLogger.Debug("ProxyConfig::initAppApiRelationMap begin")
 	//从redis获取数据
-	redisClient := redisx.GetRedisClient(CurrentConfig.Redis.ServerUrl, CurrentConfig.Redis.MaxIdle, CurrentConfig.Redis.MaxActive)
+	redisClient := getRedisCache()
 	relations, err := redisClient.HGetAll(_const.Redis_Key_AppApiRelation)
 	if err != nil {
 		innerLogger.Error("ProxyConfig::initAppApiRelationMap:redisClient.HGetAll error: " + err.Error())
@@ -251,13 +251,12 @@ func initAppApiRelationMap() {
 	innerLogger.Debug("ProxyConfig::initAppApiRelationMap end => " + strconv.Itoa(len(relationMap)) + " records")
 }
 
-/*重置App、Api信息
-* Author: Panxinming
-* LastUpdateTime: 2016-05-30 18:00
-* 1）从Redis中Hashset结构获取App配置信息，置入本地Map
-* 2）从Redis中Hashset结构获取Api配置信息，置入本地Map
-* 3）更新最后加载Api时间属性，用于后续字典有效期判断
- */
+
+// resetAppApiInfo
+// 1.load app info from redis
+// 2.load api info from redis
+// 3.load relations in app and api from redis
+// 4.update LastConfigTime
 func resetAppApiInfo() {
 
 	defer func() {
@@ -292,6 +291,11 @@ func resetAppApiInfo() {
 		innerLogger.Debug("ProxyConfig::LoadAppApiInfo ConfigAppApiRelation=>" + string(jsons))
 	}
 }
+
+func getRedisCache() cache.RedisCache{
+	return cache.GetRedisCache(CurrentConfig.Redis.ServerUrl, CurrentConfig.Redis.BackupServerUrl, CurrentConfig.Redis.MaxIdle, CurrentConfig.Redis.MaxActive)
+}
+
 
 //计划任务-重置App、Api信息
 //间隔时间依据MaxCacheTime设置
