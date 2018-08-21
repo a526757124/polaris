@@ -5,13 +5,12 @@ import (
 	"encoding/xml"
 )
 
-//代理配置信息
+//ProxyConfig config interface
 type ProxyConfig struct {
 	XMLName    	xml.Name   	`xml:"Config"`
 	Server 		Server 		`xml:"Server"`
-	LocalApis  	[]LocalApi 	`xml:"Apis>Api"`
 	AppSetting 	AppSetting 	`xml:"AppSetting"`
-	ConsulSet  	ConsulSet 	`xml:"consul"`
+	ConsulSet  	ConsulSet 	`xml:"Consul"`
 	Redis      	Redis      	`xml:"Redis"`
 }
 
@@ -41,17 +40,3 @@ type Redis struct {
 	MaxIdle int
 	MaxActive int
 }
-
-//Api配置
-type LocalApi struct {
-	Module       string `xml:"module"`
-	ApiKey       string `xml:"apikey"`
-	ApiVersion   string `xml:"apiversion"`
-	ApiUrl       string `xml:"apiurl"`
-	CallMethod   string
-	CallName	 string
-	Status       int    `xml:"status"`
-	ValidateType int    `xml:"validatetype"`
-	ValidIP      string `xml:"validip"`
-}
-

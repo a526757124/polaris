@@ -3,10 +3,8 @@ package config
 import (
 	"encoding/json"
 	"encoding/xml"
-	"fmt"
 	"io/ioutil"
 	"os"
-	"runtime"
 	"strconv"
 	"strings"
 	"sync"
@@ -16,6 +14,7 @@ import (
 	"github.com/devfeel/polaris/util/redisx"
 	"github.com/devfeel/polaris/const"
 	"github.com/devfeel/polaris/util/consul"
+	"github.com/devfeel/polaris/core/exception"
 )
 
 //默认ApiKey，当指定ApiKey无对应ApiUrl时，返回该项
@@ -36,7 +35,7 @@ var (
 	appMap map[string]*models.AppInfo
 	//AppApi关系列表
 	relationMap      map[string]*models.Relation
-	LoadConfigTime time.Time //最后一次加载APIMap的时间
+	LoadConfigTime time.Time
 	CurrentConfig    *ProxyConfig
 	CurrentBaseDir   string
 	allowIPMap       map[string]int
@@ -200,26 +199,6 @@ func initApiMap() {
 		tmpMap[api.ApiModule+"/"+api.ApiKey+"/"+api.ApiVersion] = api
 	}
 
-	//处理配置文件配置
-	//配置文件不支持group模式
-	for _, api := range CurrentConfig.LocalApis {
-		gateApi := &models.GatewayApiInfo{
-			ApiKey:       api.ApiKey,
-			ApiModule:    api.Module,
-			ApiVersion:   api.ApiVersion,
-			Status:       api.Status,
-			ValidateType: api.ValidateType,
-			ValidIP:      api.ValidIP,
-		}
-		gateApi.TargetApis = []*models.TargetApiInfo{
-			&models.TargetApiInfo{TargetKey:"local", TargetUrl:api.ApiUrl, CallName:api.CallName, CallMethod:api.CallName},
-		}
-		if gateApi.ValidIP != "" {
-			gateApi.ValidIPs = strings.Split(gateApi.ValidIP, ApiIpSplitChar)
-		}
-		tmpMap[api.Module+"/"+api.ApiKey+"/"+api.ApiVersion] = gateApi
-	}
-
 	//处理极端数据情况
 	if len(tmpMap) > 0{
 		mutex.Lock()
@@ -282,13 +261,10 @@ func initAppApiRelationMap() {
 func resetAppApiInfo() {
 
 	defer func() {
-		var errmsg string
 		if err := recover(); err != nil {
-			errmsg = fmt.Sprintln(err)
-			os.Stdout.Write([]byte("proxyconfig:resetAppApiInfo error! => " + errmsg))
-			buf := make([]byte, 4096)
-			n := runtime.Stack(buf, true)
-			innerLogger.Error("proxyconfig:resetAppApiInfo error! => " + errmsg + " => " + string(buf[:n]))
+			ex := exception.CatchError(_const.ProjectName+":resetAppApiInfo error!", err)
+			logger.DefaultLogger.Error(ex.GetDefaultLogString())
+			os.Stdout.Write([]byte(ex.GetDefaultLogString()))
 		}
 	}()
 
