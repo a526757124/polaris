@@ -76,8 +76,8 @@ func InitConfig(configFile string) *ProxyConfig {
 	//初始化App、Api信息
 	resetAppApiInfo()
 
-	if CurrentConfig.AppSetting.ConfigCacheMins > 0{
-		configCacheTime = CurrentConfig.AppSetting.ConfigCacheMins
+	if CurrentConfig.GlobalSet.ConfigCacheMins > 0{
+		configCacheTime = CurrentConfig.GlobalSet.ConfigCacheMins
 	}
 
 	//启动定时重置App、Api信息

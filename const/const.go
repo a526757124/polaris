@@ -19,6 +19,7 @@ const (
 
 	ServiceHostType_Input = 0	//手工录入
 	ServiceHostType_Consul = 1	//Consul匹配
+	ServiceHostType_Etcd = 2	//Etcd匹配
 
 	ApiType_Balance = 0 //负载方式
 	ApiType_Group = 1 //组合方式

@@ -9,16 +9,15 @@ import (
 type ProxyConfig struct {
 	XMLName    	xml.Name   	`xml:"Config"`
 	Server 		Server 		`xml:"Server"`
-	AppSetting 	AppSetting 	`xml:"AppSetting"`
+	GlobalSet 	GlobalSet 	`xml:"GlobalSet"`
 	ConsulSet  	ConsulSet 	`xml:"Consul"`
 	Redis      	Redis      	`xml:"Redis"`
 }
 
 //基础应用配置
-type AppSetting struct {
-	CountLogApi            string
-	ApiCallNumLimitPerMins int
-	ConfigCacheMins int
+type GlobalSet struct {
+	CountLogApi				string
+	ConfigCacheMins 		int
 }
 
 //Consul config
