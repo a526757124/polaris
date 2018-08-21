@@ -25,7 +25,7 @@ func DoValidate(apiContext *ApiContext) {
 		apiContext.AppInfo = &models.AppInfo{}
 	}
 
-	//判断App状态是否合法
+	//check app's status
 	if apiContext.RetCode == RetCode_OK {
 		if apiContext.AppInfo.Status != _const.AppStatus_Normal {
 			apiContext.RetMsg = "app not activate status"
@@ -33,7 +33,6 @@ func DoValidate(apiContext *ApiContext) {
 		}
 	}
 
-	//获取对应GatewayApiInfo
 	if apiContext.RetCode == RetCode_OK {
 		apiContext.ApiInfo, flag = config.GetApiInfo(apiContext.ApiUrlKey)
 		if !flag {
@@ -43,7 +42,7 @@ func DoValidate(apiContext *ApiContext) {
 		}
 	}
 
-	//判断Api状态是否合法
+	//check api's status
 	if apiContext.RetCode == RetCode_OK {
 		if apiContext.ApiInfo.Status != _const.ApiStatus_Normal {
 			apiContext.RetMsg = "api not activate status"
