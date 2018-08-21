@@ -74,12 +74,6 @@ func InitConfig(configFile string) *ProxyConfig {
 	}
 	CurrentConfig = result
 
-	//初始化允许访问的IP字典
-	allowIPMap = make(map[string]int)
-	for _, v := range CurrentConfig.AllowIPs {
-		allowIPMap[v] = 1
-	}
-
 	//初始化App、Api信息
 	resetAppApiInfo()
 
@@ -97,7 +91,7 @@ func InitConfig(configFile string) *ProxyConfig {
 func initAppMap() {
 	innerLogger.Debug("ProxyConfig::initAppMap begin")
 	//从redis获取数据
-	redisClient := redisx.GetRedisClient(CurrentConfig.Redis.ServerIP, CurrentConfig.Redis.MaxIdle, CurrentConfig.Redis.MaxActive)
+	redisClient := redisx.GetRedisClient(CurrentConfig.Redis.ServerUrl, CurrentConfig.Redis.MaxIdle, CurrentConfig.Redis.MaxActive)
 	apps, err := redisClient.HGetAll(_const.Redis_Key_AppMap)
 	if err != nil {
 		innerLogger.Error("ProxyConfig::initAppMap:redisClient.HGetAll error: " + err.Error())
@@ -137,7 +131,7 @@ func initAppMap() {
 func initApiMap() {
 	innerLogger.Debug("ProxyConfig::initApiMap begin")
 	//从redis获取数据
-	redisClient := redisx.GetRedisClient(CurrentConfig.Redis.ServerIP, CurrentConfig.Redis.MaxIdle, CurrentConfig.Redis.MaxActive)
+	redisClient := redisx.GetRedisClient(CurrentConfig.Redis.ServerUrl, CurrentConfig.Redis.MaxIdle, CurrentConfig.Redis.MaxActive)
 
 	apis, err := redisClient.HGetAll(_const.Redis_Key_ApiMap)
 	if err != nil {
@@ -251,7 +245,7 @@ func initApiMap() {
 func initAppApiRelationMap() {
 	innerLogger.Debug("ProxyConfig::initAppApiRelationMap begin")
 	//从redis获取数据
-	redisClient := redisx.GetRedisClient(CurrentConfig.Redis.ServerIP, CurrentConfig.Redis.MaxIdle, CurrentConfig.Redis.MaxActive)
+	redisClient := redisx.GetRedisClient(CurrentConfig.Redis.ServerUrl, CurrentConfig.Redis.MaxIdle, CurrentConfig.Redis.MaxActive)
 	relations, err := redisClient.HGetAll(_const.Redis_Key_AppApiRelation)
 	if err != nil {
 		innerLogger.Error("ProxyConfig::initAppApiRelationMap:redisClient.HGetAll error: " + err.Error())
@@ -387,12 +381,4 @@ func CheckAppApiRelation(appId int, apiId int) (ok bool) {
 		isUse = relation.IsUse
 	}
 	return isUse
-}
-
-//检查指定IP是否在允许列表内
-func CheckAllowIP(clientIp string) (ok bool) {
-	allowIpMutex.RLock()
-	_, mok := allowIPMap[clientIp]
-	allowIpMutex.RUnlock()
-	return mok
 }

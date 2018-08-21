@@ -7,38 +7,39 @@ import (
 
 //代理配置信息
 type ProxyConfig struct {
-	XMLName    xml.Name   `xml:"proxyconfig"`
-	HttpServer HttpServer `xml:"httpserver"`
-	LocalApis       []LocalApi      `xml:"apis>api"`
-	AllowIPs   []string   `xml:"allowips>ip"`
-	AppSetting AppSetting `xml:"appsetting"`
-	ConsulSet  ConsulSet `xml:"consul"`
-	Redis      Redis      `xml:"redis"`
+	XMLName    	xml.Name   	`xml:"Config"`
+	Server 		Server 		`xml:"Server"`
+	LocalApis  	[]LocalApi 	`xml:"Apis>Api"`
+	AppSetting 	AppSetting 	`xml:"AppSetting"`
+	ConsulSet  	ConsulSet 	`xml:"consul"`
+	Redis      	Redis      	`xml:"Redis"`
 }
 
 //基础应用配置
 type AppSetting struct {
-	CountLogApi            string `xml:"countlogapi"`
-	ApiCallNumLimitPerMins int    `xml:"apicallnumlimitpermins"`
-	ConfigCacheMins int `xml:"configcachemins"`
+	CountLogApi            string
+	ApiCallNumLimitPerMins int
+	ConfigCacheMins int
 }
 
-//Consul 配置
+//Consul config
 type ConsulSet struct{
-	IsUse bool `xml:"isuse,attr"`
-	ServerUrl string `xml:"serverurl,attr"`
+	IsUse bool
+	ServerUrl string
 }
 
-//全局配置
-type HttpServer struct {
-	HttpPort int `xml:"httpport,attr"`
+//Server server config
+type Server struct {
+	HttpPort int
+	JsonRpcPort int
 }
 
-//Redis配置
+//Redis redis config
 type Redis struct {
-	ServerIP string `xml:"serverip,attr"`
-	MaxIdle int `xml:"maxidle,attr"`
-	MaxActive int `xml:"maxactive,attr"`
+	ServerUrl string
+	BackupServerUrl string
+	MaxIdle int
+	MaxActive int
 }
 
 //Api配置

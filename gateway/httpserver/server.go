@@ -20,7 +20,7 @@ func StartServer(logPath string) error {
 	//初始化Router
 	InitRoute(dotweb)
 
-	httpPort := config.CurrentConfig.HttpServer.HttpPort
+	httpPort := config.CurrentConfig.Server.HttpPort
 
 	logger.DefaultLogger.Debug("开始启动监听"+strconv.Itoa(httpPort)+"端口...")
 	err := dotweb.StartServer(httpPort)

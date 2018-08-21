@@ -16,12 +16,11 @@ import (
 	"github.com/devfeel/polaris/const"
 	"encoding/json"
 	"net/rpc"
-	"github.com/devfeel/polaris/control/metric"
+	"github.com/devfeel/polaris/control/metrics"
 )
 
 var(
 	rpcLogger = logger.JsonRpcLogger
-	port = 1789
 )
 
 type RequestJson struct {
@@ -35,6 +34,7 @@ type RequestJson struct {
 
 
 func StartServer(){
+	port := config.CurrentConfig.Server.JsonRpcPort
 	lis, err := net.Listen("tcp", ":"+strconv.Itoa(port))
 	if err != nil {
 		return

@@ -25,7 +25,7 @@ func NewRedisLimiter() *RedisLimiter{
 // RequestCheck
 func (l *RedisLimiter) RequestCheck(key string, calls int) bool {
 	key = getFullKey(key)
-	redisClient := redisx.GetRedisClient(config.CurrentConfig.Redis.ServerIP, config.CurrentConfig.Redis.MaxIdle, config.CurrentConfig.Redis.MaxActive)
+	redisClient := redisx.GetRedisClient(config.CurrentConfig.Redis.ServerUrl, config.CurrentConfig.Redis.MaxIdle, config.CurrentConfig.Redis.MaxActive)
 	currentNum, err := redisClient.INCR(key)
 	if err != nil {
 		return true
