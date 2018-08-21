@@ -1,5 +1,5 @@
 // metric
-package metric
+package metrics
 
 import (
 	"TechPlat/apigateway/config"

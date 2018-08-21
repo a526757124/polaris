@@ -7,7 +7,7 @@ import (
 	"os"
 	"github.com/devfeel/polaris/config"
 	"github.com/devfeel/polaris/const"
-	"github.com/devfeel/polaris/control/metric"
+	"github.com/devfeel/polaris/control/metrics"
 	"github.com/devfeel/polaris/util/logx"
 	"github.com/devfeel/polaris/gateway/httpserver"
 	"github.com/devfeel/polaris/core/exception"
@@ -62,7 +62,7 @@ func main() {
 	config.SetBaseDir(currentBaseDir)
 
 	//启动Api计数日志
-	metric.StartApiCountHandler()
+	metrics.StartApiCountHandler()
 
 	err := httpserver.StartServer(filex.GetCurrentDirectory())
 	if err != nil {

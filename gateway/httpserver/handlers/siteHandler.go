@@ -11,7 +11,7 @@ import (
 	"github.com/devfeel/polaris/const"
 	"github.com/devfeel/polaris/util/httpx"
 	"runtime"
-	"github.com/devfeel/polaris/control/metric"
+	"github.com/devfeel/polaris/control/metrics"
 	"time"
 )
 
@@ -23,8 +23,8 @@ func Monitor(ctx dotweb.Context) error{
 	}
 	m := &monitorInfo{}
 	m.GoroutineNum = runtime.NumGoroutine()
-	m.StartTime = metric.ServerCounter.StartTime()
-	m.TotalRequestCount = metric.ServerCounter.Count()
+	m.StartTime = metrics.ServerCounter.StartTime()
+	m.TotalRequestCount = metrics.ServerCounter.Count()
 	ctx.WriteString(json.Marshal(m))
 	return nil
 }

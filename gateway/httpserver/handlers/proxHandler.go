@@ -14,7 +14,7 @@ import (
 	"github.com/devfeel/polaris/models"
 	"github.com/devfeel/polaris/util/logx"
 	"github.com/devfeel/polaris/gateway/balance"
-	"github.com/devfeel/polaris/control/metric"
+	"github.com/devfeel/polaris/control/metrics"
 	"github.com/devfeel/polaris/core/exception"
 	. "github.com/devfeel/polaris/gateway/models"
 	"github.com/devfeel/polaris/gateway/request"
@@ -172,7 +172,7 @@ func OneProxy(ctx dotweb.Context) error{
 	jsonLogB, _ := json.Marshal(proxyLog)
 	gatewayLogger.Info(string(jsonLogB))
 	//do metrics
-	metric.AddApiCount(apiContext.GateAppID, apiContext.ApiInfo.ApiID, apiContext.ApiModule, apiContext.ApiName, apiContext.ApiVersion, 1, strconv.Itoa(resJson.RetCode))
+	metrics.AddApiCount(apiContext.GateAppID, apiContext.ApiInfo.ApiID, apiContext.ApiModule, apiContext.ApiName, apiContext.ApiVersion, 1, strconv.Itoa(resJson.RetCode))
 	ctx.WriteString(responseContent)
 	return nil
 }

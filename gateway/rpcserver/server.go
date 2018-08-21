@@ -164,7 +164,7 @@ func (self *RequestJson) Request(args RequestJson, result *ProxyResponse) error 
 	jsonLogB, _ := json.Marshal(proxyLog)
 	rpcLogger.Info(string(jsonLogB))
 	//do metrics
-	metric.AddApiCount(apiContext.GateAppID, apiContext.ApiInfo.ApiID, apiContext.ApiModule, apiContext.ApiName, apiContext.ApiVersion, 1, strconv.Itoa(resJson.RetCode))
+	metrics.AddApiCount(apiContext.GateAppID, apiContext.ApiInfo.ApiID, apiContext.ApiModule, apiContext.ApiName, apiContext.ApiVersion, 1, strconv.Itoa(resJson.RetCode))
 
 	result = resJson
 
