@@ -28,10 +28,11 @@ const (
 )
 
 const(
-	Redis_Key_AppMap         = "Polaris:GatewayAppHash"
-	Redis_Key_ApiMap         = "Polaris:GatewayApiHash"
-	Redis_Key_AppApiRelation = "Polaris:AppGatewayApiRelationHash"
-	Redis_Key_CommonPre      = "Polaris.ApiGateway"
+	Redis_Key_AppMap        = "Polaris:GatewayAppHash"
+	Redis_Key_ApiMap        = "Polaris:GatewayApiHash"
+	Redis_Key_Relation 	 	= "Polaris:GatewayRelationHash"
+	Redis_Key_GlobalConfig 	= "Polaris:GatewayGlobalConfig"
+	Redis_Key_CommonPre     = "Polaris.ApiGateway"
 )
 
 const(

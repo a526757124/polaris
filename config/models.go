@@ -14,29 +14,28 @@ type ProxyConfig struct {
 	Redis      	Redis      	`xml:"Redis"`
 }
 
-//基础应用配置
 type Global struct {
-	CountLogApi				string
-	ConfigCacheMins 		int
-	UseDefaultTestApp		bool
+	CountLogApi			string
+	ConfigCacheMins 	int
+	UseDefaultTestApp	bool
 }
 
 //Consul config
 type Consul struct{
-	IsUse bool
-	ServerUrl string
+	IsUse 		bool
+	ServerUrl 	string
 }
 
 //Server server config
 type Server struct {
-	HttpPort int
+	HttpPort 	int
 	JsonRpcPort int
 }
 
 //Redis redis config
 type Redis struct {
-	ServerUrl string
+	ServerUrl 		string
 	BackupServerUrl string
-	MaxIdle int
-	MaxActive int
+	MaxIdle 		int
+	MaxActive 		int
 }

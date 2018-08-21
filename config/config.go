@@ -16,6 +16,7 @@ import (
 	"encoding/xml"
 	"os"
 	"fmt"
+	"github.com/devfeel/mapper"
 )
 
 const (
@@ -74,22 +75,28 @@ func InitConfig(configFile string) *ProxyConfig {
 func initConfig() error{
 	content, err := ioutil.ReadFile(CurrentConfigFile)
 	if err != nil {
-		innerLogger.Warn("ProxyConfig::InitConfig parse config [" + CurrentConfigFile + "] read error - " + err.Error())
+		innerLogger.Warn("ProxyConfig::initConfig parse config [" + CurrentConfigFile + "] read error - " + err.Error())
 		return err
 	}
 
 	result := &ProxyConfig{}
 	err = xml.Unmarshal(content, result)
 	if err != nil {
-		innerLogger.Warn("ProxyConfig::InitConfig parse config [" + CurrentConfigFile + "] Unmarshal error - " + err.Error())
+		innerLogger.Warn("ProxyConfig::initConfig parse config [" + CurrentConfigFile + "] Unmarshal error - " + err.Error())
 		return err
 	}
 	CurrentConfig = result
 
-	//初始化App、Api信息
-	err = loadAppApiInfo()
+	err = loadRedisGlobalConfig()
 	if err != nil {
-		innerLogger.Warn("ProxyConfig::InitConfig loadAppApiInfo error - " + err.Error())
+		innerLogger.Warn("ProxyConfig::initConfig loadRedisGlobalConfig error - " + err.Error())
+		return err
+	}
+
+	//load app & api info
+	err = loadRedisAppApiInfo()
+	if err != nil {
+		innerLogger.Warn("ProxyConfig::initConfig loadRedisAppApiInfo error - " + err.Error())
 		return err
 	}
 
@@ -99,13 +106,42 @@ func initConfig() error{
 	return nil
 }
 
-func initAppMap() error{
+func loadRedisGlobalConfig() error{
+	innerLogger.Debug("ProxyConfig::initAppMap begin")
+	//load data from redis
+	redisClient := getRedisCache()
+	confJson, err := redisClient.GetString(_const.Redis_Key_GlobalConfig)
+	if err != nil {
+		innerLogger.Error("ProxyConfig::loadRedisGlobalConfig:GetRedis error: " + err.Error())
+		return err
+	}
+
+	if confJson == ""{
+		innerLogger.Info("ProxyConfig::loadRedisGlobalConfig no have data in redis")
+	}else{
+		conf := &models.GlobalConfig{}
+		errUnmarshal := json.Unmarshal([]byte(confJson), conf)
+		if errUnmarshal != nil {
+			innerLogger.Error("ProxyConfig::loadRedisGlobalConfig:json.Unmarshal error: " + err.Error())
+			return err
+		}
+
+		if conf != nil{
+			mapper.AutoMapper(conf, &CurrentConfig.Global)
+		}
+	}
+
+	innerLogger.Debug("ProxyConfig::loadRedisGlobalConfig end")
+	return nil
+}
+
+func loadRedisAppMap() error{
 	innerLogger.Debug("ProxyConfig::initAppMap begin")
 	//load data from redis
 	redisClient := getRedisCache()
 	apps, err := redisClient.HGetAll(_const.Redis_Key_AppMap)
 	if err != nil {
-		innerLogger.Error("ProxyConfig::initAppMap:redisClient.HGetAll error: " + err.Error())
+		innerLogger.Error("ProxyConfig::initAppMap:GetRedis error: " + err.Error())
 		return err
 	}
 
@@ -143,13 +179,13 @@ func initAppMap() error{
 	return nil
 }
 
-func initApiMap() error{
+func loadRedisApiMap() error{
 	innerLogger.Debug("ProxyConfig::initApiMap begin")
 	//load data from redis
 	redisClient := getRedisCache()
 	apis, err := redisClient.HGetAll(_const.Redis_Key_ApiMap)
 	if err != nil {
-		innerLogger.Error("ProxyConfig::initApiMap:redisClient.HGetAll error : " + err.Error())
+		innerLogger.Error("ProxyConfig::initApiMap:GetRedis error : " + err.Error())
 		return err
 	}
 
@@ -235,13 +271,13 @@ func initApiMap() error{
 	return nil
 }
 
-func initRelationMap() error{
+func loadRedisRelationMap() error{
 	innerLogger.Debug("ProxyConfig::initRelationMap begin")
 	//load data from redis
 	redisClient := getRedisCache()
-	relations, err := redisClient.HGetAll(_const.Redis_Key_AppApiRelation)
+	relations, err := redisClient.HGetAll(_const.Redis_Key_Relation)
 	if err != nil {
-		innerLogger.Error("ProxyConfig::initRelationMap:redisClient.HGetAll error: " + err.Error())
+		innerLogger.Error("ProxyConfig::initRelationMap:GetRedis error: " + err.Error())
 		return err
 	}
 
@@ -266,29 +302,30 @@ func initRelationMap() error{
 	return nil
 }
 
-// loadAppApiInfo
+// loadRedisAppApiInfo
 // 1.load app info from redis
 // 2.load api info from redis
 // 3.load relations in app and api from redis
 // 4.update LastConfigTime
-func loadAppApiInfo() error{
+func loadRedisAppApiInfo() error{
 
 	if CurrentConfig.Redis.ServerUrl == ""{
 		return errors.New("no redis server config")
 	}
 
-	//init app list from config
-	err := initAppMap()
+	//load app list from redis
+	err := loadRedisAppMap()
 	if err != nil{
 		return err
 	}
-	//init api list from config
-	err = initApiMap()
+
+	//load api list from redis
+	err = loadRedisApiMap()
 	if err != nil{
 		return err
 	}
-	//init the relations in app and api
-	err = initRelationMap()
+	//load the relations in app and api from redis
+	err = loadRedisRelationMap()
 	if err != nil{
 		return err
 	}
