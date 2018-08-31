@@ -30,6 +30,7 @@ type Consul struct{
 type Server struct {
 	HttpPort 	int
 	JsonRpcPort int
+	UIPort 	int
 }
 
 //Redis redis config

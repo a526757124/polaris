@@ -22,6 +22,7 @@ const(
 	LogTarget_Gateway = "Gateway"
 	LogTarget_JsonRpc = "JsonRpc"
 	LogTarget_Default  = "Default"
+	LogTarget_UIServer = "UIServer"
 )
 
 var (
@@ -30,6 +31,7 @@ var (
 	InnerLogger Logger
 	LoadBalanceLogger Logger
 	DefaultLogger Logger
+	UIServerLogger Logger
 )
 
 type Logger interface {
@@ -62,6 +64,7 @@ func init(){
 	LoadBalanceLogger = GetLogger(LogTarget_LoadBalance)
 	DefaultLogger = GetLogger(LogTarget_Default)
 	JsonRpcLogger = GetLogger(LogTarget_JsonRpc)
+	UIServerLogger = GetLogger(LogTarget_UIServer)
 }
 
 // GetLogger get logger with log target
