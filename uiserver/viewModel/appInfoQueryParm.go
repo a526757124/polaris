@@ -1,0 +1,11 @@
+package viewModel
+
+import "github.com/a526757124/polaris/uiserver/common/page"
+
+//应用管理列表查询参数
+type AppInfoQueryParm struct {
+	//分页对象
+	page.PageParam
+	//应用名称
+	AppName string
+}
