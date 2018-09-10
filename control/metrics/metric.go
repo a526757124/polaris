@@ -2,15 +2,14 @@
 package metrics
 
 import (
-	"TechPlat/apigateway/config"
-	"TechPlat/apigateway/const/log"
-	"TechPlat/apigateway/framework/http"
-	"TechPlat/apigateway/framework/log"
+	"github.com/devfeel/polaris/config"
+	"github.com/devfeel/polaris/util/httpx"
+	"github.com/devfeel/polaris/control/count"
+	"github.com/devfeel/polaris/util/logx"
 	"encoding/json"
 	"strconv"
 	"sync"
 	"time"
-	"github.com/devfeel/polaris/control/count"
 )
 
 var (
@@ -122,7 +121,7 @@ func handleRequestMap() {
 				//send api count info to httpapi
 				sendApiCountLog(apiCount, apiTimeKey)
 				jsonb, _ := json.Marshal(apiCount)
-				logger.Debug(apiTimeKey+" => "+apiKey+":"+string(jsonb), logdefine.LogTarget_ApiCount)
+				logger.MetricsLogger.Debug(apiTimeKey+" => "+apiKey+":"+string(jsonb))
 			}
 		}()
 	}
@@ -131,7 +130,7 @@ func handleRequestMap() {
 
 //发送ApiCount日志
 func sendApiCountLog(apiCount ApiCountInfo, countTime string) {
-	apiCountLogUrl := config.CurrentConfig.AppSetting.CountLogApi
+	apiCountLogUrl := config.CurrentConfig.Global.CountLogApi
 	if apiCountLogUrl != "" {
 		apiCountLogUrl = apiCountLogUrl +
 			"ApiID=" + apiCount.ApiID +
@@ -142,7 +141,7 @@ func sendApiCountLog(apiCount ApiCountInfo, countTime string) {
 			"&Count=" + strconv.Itoa(int(apiCount.Count)) +
 			"&RetCode=" + apiCount.RetCode +
 			"&CountTime=" + countTime
-		_, _, _, err := httputil.HttpGet(apiCountLogUrl)
+		_, _, _, err := httpx.HttpGet(apiCountLogUrl)
 		if err != nil {
 			//TODO:file? or email?
 		}

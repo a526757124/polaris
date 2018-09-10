@@ -433,11 +433,11 @@ func (rc *RedisClient) LPop(key string)(string, error){
 
 // SAdd 将一个或多个 member 元素加入到集合 key 当中，已经存在于集合的 member 元素将被忽略。
 // 假如 key 不存在，则创建一个只包含 member 元素作成员的集合。
-func (rc *RedisClient) SAdd(key string, member ...interface{}) (int, error){
+func (rc *RedisClient) SAdd(key string, member ...interface{}) (int64, error){
 	conn := rc.pool.Get()
 	defer conn.Close()
 	args := append([]interface{}{key}, member...)
-	val, err := redis.Int(innerDo(conn, "SADD", args...))
+	val, err := redis.Int64(innerDo(conn, "SADD", args...))
 	return val, err
 }
 
@@ -475,11 +475,11 @@ func (rc *RedisClient) SRandMember(key string, count int) ([]string, error) {
 // SRem 移除集合 key 中的一个或多个 member 元素，不存在的 member 元素会被忽略。
 // 当 key 不是集合类型，返回一个错误。
 // 在 Redis 2.4 版本以前， SREM 只接受单个 member 值。
-func (rc *RedisClient) SRem(key string, member ...interface{}) (int, error) {
+func (rc *RedisClient) SRem(key string, member ...interface{}) (int64, error) {
 	conn := rc.pool.Get()
 	defer conn.Close()
 	args := append([]interface{}{key}, member...)
-	val, err := redis.Int(innerDo(conn, "SREM", args...))
+	val, err := redis.Int64(innerDo(conn, "SREM", args...))
 	return val, err
 }
 
@@ -490,11 +490,11 @@ func (rc *RedisClient) SDiff(key ...interface{}) ([]string, error){
 	return val, err
 }
 
-func (rc *RedisClient) SDiffStore(destination string, key ...interface{}) (int, error){
+func (rc *RedisClient) SDiffStore(destination string, key ...interface{}) (int64, error){
 	conn := rc.pool.Get()
 	defer conn.Close()
 	args := append([]interface{}{destination}, key...)
-	val, err := redis.Int(innerDo(conn, "SDIFFSTORE", args...))
+	val, err := redis.Int64(innerDo(conn, "SDIFFSTORE", args...))
 	return val, err
 }
 
@@ -505,11 +505,11 @@ func (rc *RedisClient) SInter(key ...interface{}) ([]string, error){
 	return val, err
 }
 
-func (rc *RedisClient) SInterStore(destination string, key ...interface{})(int, error){
+func (rc *RedisClient) SInterStore(destination string, key ...interface{})(int64, error){
 	conn := rc.pool.Get()
 	defer conn.Close()
 	args := append([]interface{}{destination}, key...)
-	val, err := redis.Int(innerDo(conn, "SINTERSTORE", args...))
+	val, err := redis.Int64(innerDo(conn, "SINTERSTORE", args...))
 	return val, err
 }
 
@@ -542,11 +542,11 @@ func (rc *RedisClient) SUnion(key ...interface{}) ([]string, error){
 	return val, err
 }
 
-func (rc *RedisClient) SUnionStore(destination string, key ...interface{})(int, error){
+func (rc *RedisClient) SUnionStore(destination string, key ...interface{})(int64, error){
 	conn := rc.pool.Get()
 	defer conn.Close()
 	args := append([]interface{}{destination}, key...)
-	val, err := redis.Int(innerDo(conn, "SUNIONSTORE", args))
+	val, err := redis.Int64(innerDo(conn, "SUNIONSTORE", args))
 	return val, err
 }
 
@@ -554,31 +554,31 @@ func (rc *RedisClient) SUnionStore(destination string, key ...interface{})(int, 
 
 // ZAdd 将所有指定成员添加到键为key有序集合（sorted set）里面。 添加时可以指定多个分数/成员（score/member）对。
 // 如果指定添加的成员已经是有序集合里面的成员，则会更新改成员的分数（scrore）并更新到正确的排序位置
-func (rc *RedisClient) ZAdd(key string, score int64, member interface{}) (int, error){
+func (rc *RedisClient) ZAdd(key string, score int64, member interface{}) (int64, error){
 	conn := rc.pool.Get()
 	defer conn.Close()
 	args := append([]interface{}{key}, score, member)
-	val, err := redis.Int(innerDo(conn, "ZADD", args...))
+	val, err := redis.Int64(innerDo(conn, "ZADD", args...))
 	return val, err
 }
 
 // ZCount 返回有序集key中，score值在min和max之间(默认包括score值等于min或max)的成员
-func (rc *RedisClient) ZCount(key string, min, max int64)(int, error){
+func (rc *RedisClient) ZCount(key string, min, max int64)(int64, error){
 	conn := rc.pool.Get()
 	defer conn.Close()
 	args := append([]interface{}{key}, min, max)
-	val, err := redis.Int(innerDo(conn, "ZCOUNT", args...))
+	val, err := redis.Int64(innerDo(conn, "ZCOUNT", args...))
 	return val, err
 }
 
 
 // ZRem 从排序的集合中删除一个或多个成员
 // 当key存在，但是其不是有序集合类型，就返回一个错误。
-func (rc *RedisClient) ZRem(key string, member... interface{})(int, error){
+func (rc *RedisClient) ZRem(key string, member... interface{})(int64, error){
 	conn := rc.pool.Get()
 	defer conn.Close()
 	args := append([]interface{}{key}, member...)
-	val, err := redis.Int(innerDo(conn, "ZREM", args...))
+	val, err := redis.Int64(innerDo(conn, "ZREM", args...))
 	return val, err
 }
 
@@ -592,11 +592,11 @@ func (rc *RedisClient) ZCard(key string)(int, error){
 }
 
 // ZRank 返回有序集key中成员member的排名
-func (rc *RedisClient) ZRank(key, member string) (int, error){
+func (rc *RedisClient) ZRank(key, member string) (int64, error){
 	conn := rc.pool.Get()
 	defer conn.Close()
 	args := append([]interface{}{key}, member)
-	val, err := redis.Int(innerDo(conn, "ZRANK", args...))
+	val, err := redis.Int64(innerDo(conn, "ZRANK", args...))
 	return val, err
 }
 
