@@ -1,7 +1,6 @@
 package conn
 
 import (
-	"github.com/a526757124/polaris/config"
 	"github.com/devfeel/polaris/util/redisx"
 )
 
@@ -10,9 +9,9 @@ var redisClient *redisx.RedisClient
 type RedisConn struct{}
 
 func init() {
-	address := config.CurrentConfig.Redis.ServerUrl
-	maxIdle := config.CurrentConfig.Redis.MaxIdle
-	maxActive := config.CurrentConfig.Redis.MaxActive
+	address := "redis://127.0.0.1:6379/0"
+	maxIdle := 20
+	maxActive := 100
 	redisClient = redisx.GetRedisClient(address, maxIdle, maxActive)
 }
 

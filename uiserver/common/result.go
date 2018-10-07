@@ -5,13 +5,13 @@ import "github.com/a526757124/polaris/uiserver/common/resultCode"
 //前端界面通用返回类型
 type Result struct {
 	//是否成功
-	Success bool
+	Success bool `json:"success"`
 	//返回代码
-	Code int
+	Code int `json:"code"`
 	//返回信息
-	Msg string
+	Msg string `json:"msg"`
 	//返回数据
-	Data interface{}
+	Data interface{} `json:"data"`
 }
 
 //创建一个返回类型

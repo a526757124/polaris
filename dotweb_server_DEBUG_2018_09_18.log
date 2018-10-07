@@ -1,0 +1,897 @@
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 13:59:27.399 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 13:59:27.4 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 13:59:27.4005 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 13:59:27.401 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 13:59:27.4015 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 13:59:27.4055 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 13:59:27.406 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 13:59:27.406 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 13:59:27.4065 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 13:59:27.4065 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 14:05:24.1032 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 14:05:24.1047 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 14:05:24.1062 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 14:05:24.1087 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 14:05:24.1102 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 14:05:24.1107 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 14:05:24.1117 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 14:05:24.1137 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 14:05:24.1172 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 14:05:24.1187 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 14:06:30.2861 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 14:06:30.2866 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 14:06:30.2866 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 14:06:30.2871 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 14:06:30.2871 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 14:06:30.2876 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 14:06:30.2881 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 14:06:30.2886 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 14:06:30.2886 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 14:06:30.2891 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 14:07:05.9661 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 14:07:05.9666 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 14:07:05.9666 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 14:07:05.9671 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 14:07:05.9671 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 14:07:05.9676 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 14:07:05.9676 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 14:07:05.9681 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 14:07:05.9681 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 14:07:05.9686 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 14:07:33.9212 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 14:07:33.9217 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 14:07:33.9222 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 14:07:33.9222 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 14:07:33.9227 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 14:07:33.9227 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 14:07:33.9232 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 14:07:33.9232 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 14:07:33.9237 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 14:07:33.9237 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 14:11:00.7929 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 14:11:00.7934 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 14:11:00.7939 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 14:11:00.7944 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 14:11:00.7949 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 14:11:00.7949 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 14:11:00.7955 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 14:11:00.796 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 14:11:00.7965 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 14:11:00.797 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 14:11:28.4791 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 14:11:28.4796 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 14:11:28.4796 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 14:11:28.4796 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 14:11:28.4801 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 14:11:28.4801 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 14:11:28.4806 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 14:11:28.4811 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 14:11:28.4811 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 14:11:28.4816 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 14:15:40.9264 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 14:15:40.9269 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 14:15:40.9274 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 14:15:40.9274 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 14:15:40.9279 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 14:15:40.9284 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 14:15:40.9289 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 14:15:40.9289 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 14:15:40.9294 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 14:15:40.9299 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 14:16:23.3197 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 14:16:23.3207 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 14:16:23.3233 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 14:16:23.3248 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 14:16:23.3263 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 14:16:23.3268 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 14:16:23.3273 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 14:16:23.3273 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 14:16:23.3278 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 14:16:23.3278 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 14:17:15.0752 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 14:17:15.0752 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 14:17:15.0757 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 14:17:15.0762 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 14:17:15.0762 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 14:17:15.0767 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 14:17:15.0772 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 14:17:15.0777 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 14:17:15.0782 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 14:17:15.0782 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 14:17:53.704 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 14:17:53.7045 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:17:53.7045 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:17:53.705 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:17:53.7055 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:17:53.7055 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:17:53.706 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:17:53.706 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:17:53.7065 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:17:53.7065 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:17:53.707 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:17:53.707 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:17:53.707 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:17:53.7075 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:17:53.7075 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:17:53.708 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 14:17:53.708 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:17:53.7085 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:17:53.7085 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:17:53.709 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:17:53.709 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:17:53.7095 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:17:53.7095 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:17:53.71 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:17:53.7105 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:17:53.7105 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:17:53.711 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:17:53.7115 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:17:53.7115 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:17:53.7115 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:17:53.712 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:17:53.7125 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:17:53.7125 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:17:53.713 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:17:53.713 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:17:53.7135 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:17:53.7135 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:17:53.714 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:17:53.714 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:17:53.7145 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:17:53.715 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:17:53.715 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:17:53.7155 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:17:53.716 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:17:53.716 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 14:17:53.7165 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 14:17:53.7165 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 14:17:53.717 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 14:17:53.717 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 14:17:53.7175 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 14:17:53.7175 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 14:17:53.718 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 14:26:58.8717 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 14:26:58.8717 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:26:58.8722 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:26:58.8727 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:26:58.8727 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:26:58.8732 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:26:58.8737 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:26:58.8742 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:26:58.8747 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:26:58.8752 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:26:58.8757 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:26:58.8762 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:26:58.8767 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:26:58.8777 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:26:58.8777 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:26:58.8787 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 14:26:58.8792 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:26:58.8802 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:26:58.8808 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:26:58.8812 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:26:58.8817 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:26:58.8827 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:26:58.8832 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:26:58.8837 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:26:58.8837 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:26:58.8842 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:26:58.8848 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:26:58.8848 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:26:58.8853 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:26:58.8853 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:26:58.8858 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:26:58.8863 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:26:58.8863 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:26:58.8868 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:26:58.8868 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:26:58.8873 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:26:58.8878 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:26:58.8878 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:26:58.8883 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:26:58.8883 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:26:58.8888 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:26:58.8888 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:26:58.8893 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:26:58.8898 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:26:58.8898 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 14:26:58.8903 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 14:26:58.8903 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 14:26:58.8908 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 14:26:58.8913 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 14:26:58.8918 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 14:26:58.8928 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 14:26:58.8943 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 14:33:39.3107 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 14:33:39.3107 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:33:39.3112 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:33:39.3112 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 14:33:39.3117 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:33:39.3122 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:33:39.3122 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:33:39.3127 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:33:39.3127 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 14:33:39.3132 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 14:33:39.3137 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 14:33:39.3137 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 14:33:39.3142 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 14:33:39.3142 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 14:33:39.3152 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 14:33:39.3152 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 14:34:12.3824 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 14:34:12.3829 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:34:12.3834 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:34:12.3839 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:34:12.3839 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:34:12.3844 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:34:12.3849 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:34:12.3849 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 14:34:12.3854 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:34:12.3854 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:34:12.3859 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:34:12.3864 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:34:12.3869 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:34:12.3869 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:34:12.3874 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 14:34:12.3884 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 14:34:12.3889 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:34:12.3894 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:34:12.3894 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:34:12.3899 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:34:12.3899 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:34:12.3904 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:34:12.3904 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:34:12.3909 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:34:12.3909 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:34:12.3909 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:34:12.3914 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:34:12.3914 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:34:12.3919 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:34:12.3919 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:34:12.3924 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:34:12.3929 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:34:12.3929 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:34:12.3934 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:34:12.3934 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:34:12.3939 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:34:12.3939 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 14:34:12.3944 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 14:34:12.3944 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:34:12.3949 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:34:12.3954 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:34:12.3954 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:34:12.3959 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 14:34:12.3959 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 14:34:12.3965 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 14:34:12.3965 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 14:34:12.397 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 14:34:12.397 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 14:34:12.3975 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 14:34:12.3975 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 14:34:12.398 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 14:34:12.398 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 16:04:52.462 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 16:04:52.4625 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:04:52.4625 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:04:52.463 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:04:52.4635 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:04:52.4635 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:04:52.464 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:04:52.464 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:04:52.4645 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:04:52.4645 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:04:52.4655 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:04:52.4655 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:04:52.466 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:04:52.4665 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:04:52.467 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:04:52.4675 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 16:04:52.468 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:04:52.468 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:04:52.4685 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:04:52.4685 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:04:52.469 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:04:52.4695 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:04:52.4695 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:04:52.47 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:04:52.47 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:04:52.4705 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:04:52.471 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:04:52.471 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:04:52.4715 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:04:52.4715 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:04:52.472 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:04:52.4725 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:04:52.4725 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:04:52.473 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:04:52.473 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:04:52.4735 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:04:52.474 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:04:52.4745 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:04:52.4745 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:04:52.475 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:04:52.4755 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:04:52.476 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:04:52.476 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:04:52.4766 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:04:52.4771 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 16:04:52.4776 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 16:04:52.4781 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 16:04:52.4786 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 16:04:52.4791 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 16:04:52.4796 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 16:04:52.4806 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 16:04:52.4811 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 16:05:34.8415 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 16:05:34.842 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:05:34.842 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:05:34.8425 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 16:05:34.843 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:05:34.8435 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:05:34.844 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:05:34.844 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:05:34.8445 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 16:05:34.845 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 16:05:34.845 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 16:05:34.846 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 16:05:34.847 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 16:05:34.8475 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 16:05:34.848 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 16:05:34.849 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 16:06:45.991 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 16:06:45.9915 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:06:45.992 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:06:45.9925 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 16:06:45.993 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:06:45.9935 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:06:45.9935 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:06:45.9945 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:06:45.995 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 16:06:45.9955 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 16:06:45.9955 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 16:06:45.996 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 16:06:45.9965 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 16:06:45.9965 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 16:06:45.997 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 16:06:45.997 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 16:26:54.856 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 16:26:54.856 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/GetList] [github.com/a526757124/polaris/uiserver/router.option]
+2018-09-18 16:26:54.8565 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:26:54.8565 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:26:54.857 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 16:26:54.8575 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:26:54.8575 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:26:54.858 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:26:54.858 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:26:54.8585 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:26:54.8585 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:26:54.8585 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 16:26:54.859 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 16:26:54.8595 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 16:26:54.8595 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 16:26:54.86 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 16:26:54.86 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 16:26:54.8605 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 16:26:54.8605 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 16:56:53.6968 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 16:56:53.6973 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:56:53.6978 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:56:53.6983 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:56:53.6988 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:56:53.6988 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:56:53.6993 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:56:53.6993 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 16:56:53.6998 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:56:53.7003 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:56:53.7003 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:56:53.7003 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:56:53.7008 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:56:53.7013 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:56:53.7013 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 16:56:53.7013 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 16:56:53.7018 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:56:53.7018 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:56:53.7023 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:56:53.7023 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:56:53.7028 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:56:53.7028 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:56:53.7033 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:56:53.7033 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:56:53.7038 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:56:53.7043 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:56:53.7043 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:56:53.7048 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:56:53.7053 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:56:53.7053 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:56:53.7063 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:56:53.7063 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:56:53.7068 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:56:53.7073 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:56:53.7078 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:56:53.7083 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:56:53.7088 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:56:53.7093 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:56:53.7103 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:56:53.7113 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:56:53.7118 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 16:56:53.7123 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 16:56:53.7128 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 16:56:53.7133 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 16:56:53.7138 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 16:56:53.7138 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 16:56:53.7143 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 16:56:53.7143 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 16:56:53.7148 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 16:56:53.7148 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 16:56:53.7153 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 16:56:53.7153 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 20:47:08.8034 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 20:47:08.8039 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 20:47:08.8039 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 20:47:08.8044 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 20:47:08.8049 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 20:47:08.8049 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 20:47:08.8054 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 20:47:08.8054 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 20:47:08.8059 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 20:47:08.8064 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 20:47:08.8069 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 20:47:08.8074 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 20:47:08.8079 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 20:47:08.8079 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 20:47:08.8084 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 20:47:08.8089 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 20:47:08.8089 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 20:47:08.8094 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 20:47:08.8094 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 20:47:08.8099 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 20:47:08.8099 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 20:47:08.8104 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 20:47:08.8104 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 20:47:08.8109 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 20:47:08.8109 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 20:47:08.8114 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 20:47:08.8114 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 20:47:08.8119 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 20:47:08.8119 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 20:47:08.8124 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 20:47:08.8124 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 20:47:08.8129 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 20:47:08.8134 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 20:47:08.8134 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 20:47:08.8139 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 20:47:08.815 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 20:47:08.8154 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 20:47:08.8154 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 20:47:08.8159 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 20:47:08.8164 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 20:47:08.8169 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 20:47:08.8174 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 20:47:08.8179 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 20:47:08.8179 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 20:47:08.8184 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 20:47:08.8189 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 20:47:08.8194 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 20:47:08.8194 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 20:47:08.8199 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 20:47:08.8199 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 20:47:08.8204 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 20:47:08.8204 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 20:47:08.8209 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 20:47:08.8214 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 20:47:08.8214 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 20:47:08.8219 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 20:47:08.8219 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 20:47:08.8224 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 20:47:08.8229 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 20:47:08.8229 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 20:47:08.8234 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 20:47:08.8234 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 20:47:08.8239 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 20:47:08.8244 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 20:47:08.8254 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 20:47:08.8259 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 20:47:08.8259 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 20:47:08.8264 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 20:47:08.827 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 20:47:08.8275 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 20:47:08.8275 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 20:47:08.828 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 20:47:08.828 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 21:08:53.1137 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 21:08:53.1147 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:08:53.1147 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:08:53.1152 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:08:53.1157 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:08:53.1157 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:08:53.1162 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:08:53.1167 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:08:53.1172 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:08:53.1177 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:08:53.1182 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:08:53.1182 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:08:53.1187 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:08:53.1192 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:08:53.1192 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:08:53.1197 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:08:53.1197 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:08:53.1202 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:08:53.1202 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:08:53.1207 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:08:53.1207 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:08:53.1212 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:08:53.1212 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:08:53.1217 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:08:53.1217 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:08:53.1222 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:08:53.1222 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:08:53.1227 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:08:53.1227 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:08:53.1232 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 21:08:53.1237 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:08:53.1237 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:08:53.1242 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:08:53.1242 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:08:53.1247 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:08:53.1247 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:08:53.1252 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:08:53.1252 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:08:53.1257 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:08:53.1257 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:08:53.1262 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:08:53.1267 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:08:53.1267 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:08:53.1272 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:08:53.1277 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:08:53.1282 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:08:53.1298 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:08:53.1308 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:08:53.1318 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:08:53.1323 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:08:53.1328 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:08:53.1333 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:08:53.1338 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:08:53.1343 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:08:53.1348 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:08:53.1348 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:08:53.1353 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:08:53.1358 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:08:53.1363 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:08:53.1368 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:08:53.1373 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:08:53.1383 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:08:53.1393 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:08:53.1403 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:08:53.1413 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:08:53.1423 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:08:53.1428 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:08:53.1443 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:08:53.1458 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:08:53.1473 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:08:53.1478 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:08:53.1488 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:08:53.1493 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:08:53.1503 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:08:53.1508 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:08:53.1513 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:08:53.1523 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:08:53.1528 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:08:53.1538 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:08:53.1548 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:08:53.1553 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:08:53.1558 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:08:53.1568 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:08:53.1573 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:08:53.1578 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:08:53.1583 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:08:53.1588 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 21:08:53.1593 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 21:08:53.1598 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 21:08:53.1608 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 21:08:53.1623 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 21:08:53.1634 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 21:08:53.1643 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 21:08:53.1648 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 21:25:17.4401 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 21:25:17.4406 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:25:17.4411 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:25:17.4426 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:25:17.4436 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:25:17.4441 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:25:17.4446 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:25:17.4451 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:25:17.4466 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:25:17.4501 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:25:17.4531 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:25:17.4546 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:25:17.4556 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:25:17.4571 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:25:17.4576 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:25:17.4581 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:25:17.4587 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:25:17.4592 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:25:17.4617 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:25:17.4697 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:25:17.4712 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:25:17.4732 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:25:17.4742 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:25:17.4747 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:25:17.4752 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:25:17.4757 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:25:17.4757 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:25:17.4762 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:25:17.4767 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:25:17.4772 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 21:25:17.4787 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:25:17.4792 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:25:17.4802 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:25:17.4812 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:25:17.4857 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:25:17.4867 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:25:17.4877 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:25:17.4887 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:25:17.4892 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:25:17.4897 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:25:17.4902 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:25:17.4907 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:25:17.4917 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:25:17.4922 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:25:17.4927 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:25:17.4942 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:25:17.4957 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:25:17.4973 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:25:17.5003 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:25:17.5048 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:25:17.5058 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:25:17.5068 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:25:17.5073 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:25:17.5078 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:25:17.5083 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:25:17.5083 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:25:17.5088 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:25:17.5093 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:25:17.5103 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:25:17.5108 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:25:17.5118 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:25:17.5133 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:25:17.5143 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:25:17.5163 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:25:17.5168 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:25:17.5183 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:25:17.5193 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:25:17.5203 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:25:17.5208 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:25:17.5213 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:25:17.5218 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:25:17.5228 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:25:17.5238 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:25:17.5248 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:25:17.5253 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:25:17.5263 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:25:17.5268 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:25:17.5268 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:25:17.5273 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:25:17.5278 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:25:17.5283 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:25:17.5283 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:25:17.5293 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:25:17.5303 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:25:17.5313 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:25:17.5318 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:25:17.5333 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 21:25:17.5339 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 21:25:17.5354 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 21:25:17.5369 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 21:25:17.5379 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 21:25:17.5394 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 21:25:17.5404 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 21:25:17.5419 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
+    ____           __                     __
+   / __ \  ____   / /_ _      __  ___    / /_
+  / / / / / __ \ / __/| | /| / / / _ \  / __ \
+ / /_/ / / /_/ // /_  | |/ |/ / /  __/ / /_/ /
+/_____/  \____/ \__/  |__/|__/  \___/ /_.___/
+2018-09-18 21:32:43.2643 [DEBUG] [dotweb.go:115] DotWeb Start New AppServer
+2018-09-18 21:32:43.2643 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:32:43.2648 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:32:43.2653 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:32:43.2653 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:32:43.2658 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:32:43.2663 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:32:43.2663 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Add] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Add-fm]
+2018-09-18 21:32:43.2668 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:32:43.2673 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:32:43.2673 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:32:43.2683 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:32:43.2683 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:32:43.2688 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:32:43.2693 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Update] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Update-fm]
+2018-09-18 21:32:43.2698 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:32:43.2703 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:32:43.2703 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:32:43.2708 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:32:43.2713 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:32:43.2713 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:32:43.2718 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/Delete] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).Delete-fm]
+2018-09-18 21:32:43.2723 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [HEAD] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:32:43.2723 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:32:43.2728 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [POST] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:32:43.2728 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PUT] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:32:43.2733 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [DELETE] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:32:43.2733 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [PATCH] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:32:43.2738 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [OPTIONS] [/App/GetList] [github.com/a526757124/polaris/uiserver/handlers.(*AppInfoHandler).GetList-fm]
+2018-09-18 21:32:43.2738 [DEBUG] [server.go:404] DotWeb:HttpServer SetEnabledGzip [false]
+2018-09-18 21:32:43.2743 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:32:43.2743 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:32:43.2748 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:32:43.2748 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:32:43.2753 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:32:43.2753 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:32:43.2758 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:32:43.2758 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:32:43.2763 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:32:43.2763 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:32:43.2768 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:32:43.2773 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:32:43.2773 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:32:43.2778 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:32:43.2778 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:32:43.2783 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:32:43.2783 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:32:43.2788 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:32:43.2788 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:32:43.2788 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:32:43.2793 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:32:43.2793 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:32:43.2798 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:32:43.2803 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:32:43.2803 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:32:43.2808 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] POST^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:32:43.2813 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:32:43.2818 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:32:43.2818 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:32:43.2823 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:32:43.2828 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:32:43.2828 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:32:43.2833 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:32:43.2833 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:32:43.2838 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:32:43.2843 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:32:43.2848 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:32:43.2853 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:32:43.2863 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:32:43.2873 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:32:43.2883 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:32:43.2888 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PUT^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:32:43.2888 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:32:43.2893 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:32:43.2898 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:32:43.2898 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:32:43.2903 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Delete *dotweb.xMiddleware match
+2018-09-18 21:32:43.2903 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] DELETE^$^/App/Delete *cors.CORSMiddleware match
+2018-09-18 21:32:43.2908 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:32:43.2908 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] GET^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:32:43.2913 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *dotweb.xMiddleware match
+2018-09-18 21:32:43.2918 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] PATCH^$^/App/Add *cors.CORSMiddleware match
+2018-09-18 21:32:43.2918 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Update *dotweb.xMiddleware match
+2018-09-18 21:32:43.2923 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] HEAD^$^/App/Update *cors.CORSMiddleware match
+2018-09-18 21:32:43.2923 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *dotweb.xMiddleware match
+2018-09-18 21:32:43.2928 [DEBUG] [dotweb.go:461] DotWeb initBindMiddleware [app] OPTIONS^$^/App/GetList *cors.CORSMiddleware match
+2018-09-18 21:32:43.2933 [DEBUG] [group.go:31] DotWeb:Group NewGroup [/dotweb]
+2018-09-18 21:32:43.2933 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/pprof/:key] [github.com/devfeel/dotweb.initPProf]
+2018-09-18 21:32:43.2938 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/debug/freemem] [github.com/devfeel/dotweb.freeMemory]
+2018-09-18 21:32:43.2943 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state] [github.com/devfeel/dotweb.showServerState]
+2018-09-18 21:32:43.2943 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/state/interval] [github.com/devfeel/dotweb.showIntervalData]
+2018-09-18 21:32:43.2948 [DEBUG] [router.go:437] DotWeb:Router:RegisterRoute success [GET] [/dotweb/query/:key] [github.com/devfeel/dotweb.showQuery]
+2018-09-18 21:32:43.2948 [DEBUG] [dotweb.go:331] DotWeb RunMode is production
+2018-09-18 21:32:43.2953 [DEBUG] [server.go:109] DotWeb:HttpServer ListenAndServe [:10001]
