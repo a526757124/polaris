@@ -2,12 +2,12 @@
 package uiserver
 
 import (
-	"github.com/a526757124/polaris/uiserver/router"
-	"github.com/devfeel/middleware/cors"
-	"github.com/devfeel/polaris/util/logx"
-
 	"fmt"
 	"strconv"
+
+	"github.com/a526757124/polaris/uiserver/cors"
+	"github.com/a526757124/polaris/uiserver/router"
+	"github.com/devfeel/polaris/util/logx"
 
 	"github.com/devfeel/dotweb"
 )
