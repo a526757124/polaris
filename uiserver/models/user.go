@@ -9,3 +9,8 @@ type User struct {
 	Status     int64  //状态 0:是初始化 1:是有效 -1:是无效
 	CreateTime int64  //创建时间
 }
+
+// TableName 表名
+func (*User) TableName() string {
+	return "User"
+}
