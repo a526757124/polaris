@@ -14,3 +14,8 @@ type AppInfo struct {
 	CreateUser  int64  //创建人
 	CreateTime  int64  //创建时间
 }
+
+// TableName 表名
+func (*AppInfo) TableName() string {
+	return "AppInfo"
+}

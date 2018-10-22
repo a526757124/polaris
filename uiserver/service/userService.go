@@ -108,7 +108,7 @@ func (userService *UserService) GetList(queryParm *viewModel.UserQueryParm) (*pa
 	if err != nil {
 		return nil, err
 	}
-	count, err := conn.GetMysqlClient().Count("SELECT count(1)  FROM User")
+	count, err := conn.GetMysqlClient().Count("SELECT count(1)  FROM User" + whereSql)
 	if err != nil {
 		return nil, err
 	}

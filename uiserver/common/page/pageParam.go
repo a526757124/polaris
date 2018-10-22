@@ -1,5 +1,10 @@
 package page
 
+import (
+	"strconv"
+	"strings"
+)
+
 //分页参数
 type PageParam struct {
 	//当前页码
@@ -29,4 +34,21 @@ func (page *PageParam) GetSkip() int64 {
 //get limit
 func (page *PageParam) GetLimit() int64 {
 	return page.PageSize
+}
+
+//get limti sql
+func (page *PageParam) GetPageSql() string {
+	return " limit " + strconv.FormatInt(page.GetSkip(), 10) + "," + strconv.FormatInt(page.GetLimit(), 10)
+}
+
+//get order by sql
+func (page *PageParam) GetSortSql() string {
+	sortSql := ""
+	if len(page.SortList) > 0 {
+		sortSql += " order by "
+		for _, v := range page.SortList {
+			sortSql += " " + v.SortField + " " + v.SortWay + ","
+		}
+	}
+	return strings.TrimRight(sortSql, ",")
 }
