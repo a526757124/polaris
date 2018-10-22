@@ -2,7 +2,6 @@ package service
 
 import (
 	"errors"
-	"fmt"
 	"strconv"
 
 	"github.com/a526757124/polaris/uiserver/common/page"
@@ -20,7 +19,7 @@ func (userService *UserService) getKey() string {
 
 // insert user
 func (userService *UserService) Insert(model *models.User) error {
-	n, err := conn.GetMysqlClient().Insert("INSERT INTO `User`(`NickName`,`LoginName`,`LoginPwd`)VALUES(?,?,?);", model.NickName, model.LoginName, model.LoginPwd)
+	n, err := conn.GetMysqlClient().Insert("INSERT INTO `User`(`NickName`,`LoginName`,`LoginPwd`,`Status`)VALUES(?,?,?,?);", model.NickName, model.LoginName, model.LoginPwd, model.Status)
 	if err != nil {
 		return err
 	}
@@ -32,7 +31,7 @@ func (userService *UserService) Insert(model *models.User) error {
 
 // update user
 func (userService *UserService) Update(model *models.User) error {
-	n, err := conn.GetMysqlClient().Update("Update `User` SET `NickName`=?,`LoginName`=? WHERE `ID`=?;", model.NickName, model.LoginName, model.ID)
+	n, err := conn.GetMysqlClient().Update("Update `User` SET `NickName`=?,`LoginName`=?,`Status`=? WHERE `ID`=?;", model.NickName, model.LoginName, model.Status, model.ID)
 	if err != nil {
 		return err
 	}
@@ -105,7 +104,6 @@ func (userService *UserService) GetList(queryParm *viewModel.UserQueryParm) (*pa
 	limitSql := " limit " + strconv.FormatInt(queryParm.GetSkip(), 10) + "," + strconv.FormatInt(queryParm.GetLimit(), 10)
 
 	sql += whereSql + sortSql + limitSql
-	fmt.Println(sql)
 	err := conn.GetMysqlClient().FindList(&results, sql)
 	if err != nil {
 		return nil, err

@@ -2,6 +2,7 @@ package cors
 
 import (
 	"strconv"
+	"strings"
 
 	"github.com/devfeel/dotweb"
 )
@@ -86,6 +87,10 @@ func (m *CORSMiddleware) Handle(ctx dotweb.Context) error {
 		ctx.Response().SetHeader(dotweb.HeaderAccessControlAllowCredentials, strconv.FormatBool(m.config.allowCredentials))
 		ctx.Response().SetHeader(dotweb.HeaderAccessControlMaxAge, strconv.Itoa(m.config.maxAge))
 		ctx.Response().SetHeader(dotweb.HeaderP3P, m.config.allowedP3P)
+		if strings.ToUpper(ctx.Request().Method) == "OPTIONS" {
+			ctx.WriteStringC(204, nil)
+			return nil
+		}
 	}
 	return m.Next(ctx)
 }

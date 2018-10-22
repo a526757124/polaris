@@ -20,6 +20,7 @@ func init() {
 func InitRoute(dotweb *dotweb.DotWeb) {
 	//登录
 	dotweb.HttpServer.POST("/User/Login", userHandler.Login)
+	dotweb.HttpServer.Any("/User/GetLoginInfo", userHandler.GetLoginInfo)
 	//退出
 	dotweb.HttpServer.POST("/User/LoginOut", userHandler.Login)
 

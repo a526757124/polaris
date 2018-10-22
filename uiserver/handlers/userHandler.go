@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"strconv"
 	"strings"
 
 	"github.com/a526757124/polaris/uiserver/common"
@@ -151,6 +152,34 @@ func (*UserHandler) Login(ctx dotweb.Context) error {
 		return nil
 	}
 	//登录成功后返回token
+	loginUser := new(viewModel.LoginUser)
+	loginUser.Token = strconv.FormatInt(user.ID, 10)
+	ctx.WriteJson(common.NewSuccessResult(loginUser))
+	return nil
+}
+
+//get login info
+func (*UserHandler) GetLoginInfo(ctx dotweb.Context) error {
+	if strings.ToUpper(ctx.Request().Method) == "OPTIONS" {
+		ctx.WriteStringC(204, nil)
+		return nil
+	}
+	loginUser := new(viewModel.LoginUser)
+	err := ctx.Bind(loginUser)
+	if err != nil {
+		ctx.WriteJson(common.NewFailResult("parameter bind fail," + err.Error()))
+		return err
+	}
+	userID, err := strconv.ParseInt(loginUser.Token, 10, 64)
+	if err != nil {
+		ctx.WriteJson(common.NewFailResult("parameter convent fail," + err.Error()))
+		return err
+	}
+	user, err := userService.GetUserById(userID)
+	if err != nil {
+		ctx.WriteJson(common.NewCustomFailResult(10002, "用户登录已过期，请重新登录！"))
+		return err
+	}
 	ctx.WriteJson(common.NewSuccessResult(user))
 	return nil
 }
